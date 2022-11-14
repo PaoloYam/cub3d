@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/14 14:30:03 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:54:24 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/include.h"
+#include "../../includes/include.h"
 
 void	get_position(char **map, t_vars *game)
 {
@@ -42,8 +42,6 @@ int	line_number(char *argv, t_info *info)
 
 	i = 0;
 	fd = open(argv, O_RDONLY);
-	if (fd == 0 || fd < 0)
-		return (0);
 	str = get_next_line(fd);
 	while (str)
 	{
@@ -98,7 +96,7 @@ char	**map_maker(char **argv, t_info *info)
 	int		line;
 	t_map	mapi;
 
-	info->mapi = mapi;
+	info->mapi = &mapi;
 	i = 0;
 	line = line_number(argv[1], info);
 	map = malloc(sizeof(*map) * line);

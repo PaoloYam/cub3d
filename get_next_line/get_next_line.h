@@ -1,43 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   include.h                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/14 16:35:09 by tbrulhar         ###   ########.fr       */
+/*   Created: 2021/11/17 11:42:38 by tbrulhar          #+#    #+#             */
+/*   Updated: 2021/12/21 20:49:31 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_3D_H
-# define CUB_3D_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 # include <stdio.h>
 # include <stdlib.h>
-# include <fcntl.h>
 # include <unistd.h>
-# include "../get_next_line/get_next_line.h"
-# include "../libft/libft.h"
-# include "../mlx/mlx.h"
+# include <fcntl.h>
+# define BUFFER_SIZE 42
 
-# define SIZE 20
-
-typedef struct s_map t_map;
-struct s_map {
-	char	**map;
-	int		pos_y;
-	int		pos_x;	
-	int 	w;
-	int		h;
-};
-
-typedef struct s_info	t_info;
-struct s_info {
-	t_map	*mapi;	
-};
-
-/*	MAP */
-
-char	**map_maker(char **argv, t_info *info);
-
+char	*get_next_line(int fd);
+int		my_strlen(const char *s);
+char	*substr(char *s, unsigned int start, size_t len);
+char	*my_strcat(char *tmp, char *buffer);
 #endif
