@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+         #
+#    By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 10:40:50 by pyammoun          #+#    #+#              #
-#    Updated: 2022/11/14 18:57:20 by pyammoun         ###   ########.fr        #
+#    Updated: 2022/11/15 17:30:00 by tbrulhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = ${addprefix	src/main/, main.c}
 SRCS += ${addprefix src/map/, filling_map.c map.c}
 SRCS += ${addprefix get_next_line/, get_next_line_utils.c get_next_line.c}
+SRCS += ${addprefix src/texture/, getting_texture.c texture_utils.c check_info.c get_map.c} 
 HEADERFILES := include/include.h
 BUILD_DIR 	?= ./build
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)

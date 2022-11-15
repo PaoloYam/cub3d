@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 17:33:57 by tbrulhar          #+#    #+#             */
-/*   Updated: 2021/11/08 13:08:55 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:00:23 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strdup(char *src)
 	char	*strcopie;
 
 	i = 0;
+	if (!src)
+		return (NULL);
 	while (src[i])
 		i++;
 	strcopie = malloc(i * sizeof(*strcopie) + 1);
