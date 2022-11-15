@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/14 16:35:09 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:27:53 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ struct s_info {
 /*	MAP */
 
 char	**map_maker(char **argv, t_info *info);
+void	final_map(t_map *mapi);
 
 #endif
