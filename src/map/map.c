@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/14 18:46:24 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:08:01 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int	control_map2(t_map *mapi)
 					c = 0;
 				else if (c == 0)	
 					c = 1;	
+				mapi->pos_x = i;
+				mapi->pos_y = m;
 			}	
 		}
 	}
@@ -102,6 +104,36 @@ int	control_map2(t_map *mapi)
 	else
 		return (1);
 }
+
+int	control_map3(t_map *mapi)
+{
+	int	i;
+	int	m;
+
+	m = 0;
+	while (++m < (mapi->h - 2))	
+	{
+		i = 1;
+		while (i < (ft_strlen(mapi->map[m]) - 2))
+		{
+			if (mapi->map[m][i] == '0')
+			{
+				if (mapi->map[m][i - 1] == ' ')
+					return (0);
+				if (mapi->map[m][i + 1] == ' ')
+					return (0);
+				if (mapi->map[m - 1][i] == ' ')
+					return (0);
+				if (mapi->map[m + 1][i] == ' ')
+					return (0);	
+			}
+			i++;
+		}
+	}	
+	return (1);	
+}
+
+
 
 int	map_maker(char **argv, t_info *info)
 {
@@ -122,6 +154,8 @@ int	map_maker(char **argv, t_info *info)
 	if (!control_map(info->mapi->map, line - 1))
 		return (0);
 	if (!control_map2(info->mapi))
+		return (0);
+	if (!control_map3(info->mapi))
 		return (0);
 	//get_position(map, game);
 	return (1);
