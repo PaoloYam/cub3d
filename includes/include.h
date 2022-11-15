@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/14 16:35:09 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:34:36 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_3D_H
-# define CUB_3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -38,6 +38,6 @@ struct s_info {
 
 /*	MAP */
 
-char	**map_maker(char **argv, t_info *info);
+int	map_maker(char **argv, t_info *info);
 
 #endif

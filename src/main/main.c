@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:10:40 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/14 16:54:38 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:26:04 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	(void)argv;
 	t_info	info;
 
-	map_maker(argv, &info);
+	if (!map_maker(argv, &info))
+		printf("nikomok\n");
 	return (0);
 }
