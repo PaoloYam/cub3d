@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/14 16:54:24 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:08:01 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/include.h"
 
-void	get_position(char **map, t_vars *game)
+/*void	get_position(char **map, t_vars *game)
 {
 	int	m;
 	int	i;
@@ -32,7 +32,7 @@ void	get_position(char **map, t_vars *game)
 		}
 		m++;
 	}
-}
+}*/
 
 int	line_number(char *argv, t_info *info)
 {
@@ -64,32 +64,78 @@ int	control_map(char **map, int line)
 			return (0);
 	i = -1;
 	while (map[line][++i] != '\n')
-		if (map[line][i++] != '1' && map[line][i++] != ' ')
+		if (map[line][i] != '1' && map[line][i] != ' ')
 			return (0);
 	m = -1;
-	i = -1;
-	while (++m < line)
-	{
-		while (map[m][++i] == ' ')
-		if ((map[m][i] != '1') || (map[m][(ft_strlen(map[m]) - 1)] != '1'))
+	while (++m <= line)
+		if ((map[m][0] != '1') || (map[m][(ft_strlen(map[m]) - 2)] != '1'))
 			return (0);
-	}	
-	return (1);
-}
-
-int	control_map2(char **map, int line)
-{
-	int	i;
-	int	m;
-
-	m = -1;
-	i = 0;
-	while ()	
 	
 	return (1);
 }
 
-char	**map_maker(char **argv, t_info *info)
+int	control_map2(t_map *mapi)
+{
+	int	i;
+	int	m;
+	int	c;
+
+	m = -1;
+	c = 0;
+	while (++m < (mapi->h - 1))	
+	{
+		i = -1;
+		while (mapi->map[m][++i])
+		{
+			if (mapi->map[m][i] == 'N' || mapi->map[m][i] == 'E' ||
+					mapi->map[m][i] == 'S' || mapi->map[m][i] == 'W')
+			{
+				if (c == 1)
+					c = 0;
+				else if (c == 0)	
+					c = 1;	
+				mapi->pos_x = i;
+				mapi->pos_y = m;
+			}	
+		}
+	}
+	if (c == 0)
+		return (0);
+	else
+		return (1);
+}
+
+int	control_map3(t_map *mapi)
+{
+	int	i;
+	int	m;
+
+	m = 0;
+	while (++m < (mapi->h - 2))	
+	{
+		i = 1;
+		while (i < (ft_strlen(mapi->map[m]) - 2))
+		{
+			if (mapi->map[m][i] == '0')
+			{
+				if (mapi->map[m][i - 1] == ' ')
+					return (0);
+				if (mapi->map[m][i + 1] == ' ')
+					return (0);
+				if (mapi->map[m - 1][i] == ' ')
+					return (0);
+				if (mapi->map[m + 1][i] == ' ')
+					return (0);	
+			}
+			i++;
+		}
+	}	
+	return (1);	
+}
+
+
+
+int	map_maker(char **argv, t_info *info)
 {
 	int		i;
 	int		fd;
@@ -99,16 +145,18 @@ char	**map_maker(char **argv, t_info *info)
 	info->mapi = &mapi;
 	i = 0;
 	line = line_number(argv[1], info);
-	map = malloc(sizeof(*map) * line);
-	if (map == NULL)
+	info->mapi->map = malloc(sizeof(*(info->mapi->map)) * line);
+	if (info->mapi->map == NULL)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
 	while (i < line)
 		info->mapi->map[i++] = get_next_line(fd);
-	if ((control_map(info->mapi->map, line)) == 0)
+	if (!control_map(info->mapi->map, line - 1))
 		return (0);
-	if ((control_map2(info->mapi->map, line)) == 0)
+	if (!control_map2(info->mapi))
 		return (0);
-	get_position(map, game);
-	return (map);
+	if (!control_map3(info->mapi))
+		return (0);
+	//get_position(map, game);
+	return (1);
 }
