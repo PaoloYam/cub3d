@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/14 17:34:36 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:27:53 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ struct s_info {
 
 /*	MAP */
 
+void	final_map(t_map *mapi);
 int	map_maker(char **argv, t_info *info);
 
 #endif
