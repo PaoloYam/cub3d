@@ -6,12 +6,12 @@
 #    By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 10:40:50 by pyammoun          #+#    #+#              #
-#    Updated: 2022/11/14 18:57:20 by pyammoun         ###   ########.fr        #
+#    Updated: 2022/11/16 16:57:34 by pyammoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = ${addprefix	src/main/, main.c}
-SRCS += ${addprefix src/map/, filling_map.c map.c}
+SRCS += ${addprefix src/map/, filling_map.c map.c drawing_map.c}
 SRCS += ${addprefix get_next_line/, get_next_line_utils.c get_next_line.c}
 HEADERFILES := include/include.h
 BUILD_DIR 	?= ./build
@@ -25,9 +25,10 @@ INC_FLAGS 	:= -Ilibft/incs
 INC_DIR 	?= ./includes
 INC_FLAGS 	+= $(addprefix -I,$(INC_DIRS))
 LBFT_PATH	=	./libft/
-FRAMLIBS  	=    -L ${LBFT_PATH} -lft -L ${MLX_PATH} -lmlx -framework OpenGL -framework AppKit
-READLIB 	:=	-I $(HOME)/.brew/opt/readline/include
-LIB    		:= libft/libft.a 
+MLX_PATH 	=	./mlx/
+FRAMLIBS  	=   -framework OpenGL -framework AppKit
+LIB    		:= $(LBFT_PATH)/libft.a 
+LIB_MLX		:= $(MLX_PATH)/libmlx.a
 
 
 all:	$(NAME)
@@ -40,13 +41,16 @@ $(BUILD_DIR)/%.c.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) -c  $(CFLAGS) $(INC_FLAGS) $< -o $@
 
-$(NAME): $(LIB) $(OBJS)
+$(NAME): $(LIB) $(LIB_MLX) $(OBJS)
 		@echo Linking $@
-		@$(CC) $(CFLAGS) $(INC_FLAGS) $(OBJS) $(LIB) -o $(NAME)
+		@$(CC) $(CFLAGS) $(INC_FLAGS) $(OBJS) $(LIB) $(LIB_MLX) $(FRAMLIBS) -o $(NAME)
 
 $(LIB):
-		@$(MAKE) -C libft
+		@$(MAKE) -C $(LBFT_PATH)
 		@echo Libft done
+$(LIB_MLX):
+		@$(MAKE) -C $(MLX_PATH)
+		@echo MLX done
 
 clean:
 	${RM} ${OBJS}

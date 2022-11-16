@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/16 13:35:01 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/16 14:19:50 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ int	control_map(char **map, int line)
 		if (map[0][i] != '1' && map[0][i] != ' ')
 			return (0);
 	i = -1;
-	while (map[line][++i] != '\n')
+	while (map[line][++i])
 		if (map[line][i] != '1' && map[line][i] != ' ')
 			return (0);
 	m = -1;
+	//verif si espace apres fin de ligne
 	while (++m <= line)
 		if ((map[m][0] != '1') || (map[m][(ft_strlen(map[m]) - 2)] != '1'))
 			return (0);
@@ -127,7 +128,7 @@ int	control_map4(t_map *mapi)
 	i = 0;
 	while (++m < (mapi->h))
 	{
-		while (mapi->map[m][i])
+		while (mapi->map[m][i] != '\n' && mapi->map[m][i] != '\0')
 		{
 			if (mapi->map[m][i] == ' ' || mapi->map[m][i] == '1' || 
 				mapi->map[m][i] == '0' || mapi->map[m][i] == 'N' ||
@@ -196,6 +197,5 @@ int	map_maker(char **argv, t_info *info)
 		return (0);
 	if (!control_map5(info->mapi))
 		return (0);			
-	//get_position(map, game);
 	return (1);
 }

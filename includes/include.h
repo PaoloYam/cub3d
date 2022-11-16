@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/14 17:34:36 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:57:16 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <math.h>
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
 # define SIZE 20
+# define X	8
+# define Y	8
+# define PX	64
 
 typedef struct s_map t_map;
 struct s_map {
@@ -34,10 +38,13 @@ struct s_map {
 typedef struct s_info	t_info;
 struct s_info {
 	t_map	*mapi;	
+	void	*mlx;
+	void	*win;
 };
 
 /*	MAP */
 
 int	map_maker(char **argv, t_info *info);
+void	draw(t_info *info);
 
 #endif
