@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/16 16:57:16 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/17 10:42:39 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "../mlx/mlx.h"
 
 # define SIZE 20
-# define X	8
-# define Y	8
+# define X	80
+# define Y	80
 # define PX	64
 
 typedef struct s_map t_map;

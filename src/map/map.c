@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/16 14:19:50 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/17 10:24:44 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ int	map_maker(char **argv, t_info *info)
 	if (!control_map4(info->mapi))
 		return (0);
 	if (!control_map5(info->mapi))
-		return (0);			
+		return (0);	
+	draw(info);
 	return (1);
 }
