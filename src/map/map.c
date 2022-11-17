@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/17 10:24:44 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:16:49 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	line_number(char *argv, t_info *info)
 		str = get_next_line(fd);
 		i = i + 1;
 	}
-	info->mapi->h = i;
+	info->mapi.h = i;
 	return (i);
 }
 
@@ -139,6 +139,8 @@ int	control_map4(t_map *mapi)
 				return (0);	
 		}
 	}
+	mapi->P = mapi->map[mapi->pos_y][mapi->pos_x];	
+	mapi->map[mapi->pos_y][mapi->pos_x] = '0';
 	return (1);
 }
 
@@ -176,27 +178,24 @@ int	map_maker(char **argv, t_info *info)
 	int		i;
 	int		fd;
 	int		line;
-	t_map	mapi;
 
-	info->mapi = &mapi;
 	i = 0;
 	line = line_number(argv[1], info);
-	info->mapi->map = malloc(sizeof(*(info->mapi->map)) * line);
-	if (info->mapi->map == NULL)
+	info->mapi.map = malloc(sizeof(*(info->mapi.map)) * line);
+	if (info->mapi.map == NULL)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
 	while (i < line)
-		info->mapi->map[i++] = get_next_line(fd);
-	if (!control_map(info->mapi->map, line - 1))
+		info->mapi.map[i++] = get_next_line(fd);
+	if (!control_map(info->mapi.map, line - 1))
 		return (0);
-	if (!control_map2(info->mapi))
+	if (!control_map2(&info->mapi))
 		return (0);
-	if (!control_map3(info->mapi))
+	if (!control_map3(&info->mapi))
 		return (0);	
-	if (!control_map4(info->mapi))
+	if (!control_map4(&info->mapi))
 		return (0);
-	if (!control_map5(info->mapi))
+	if (!control_map5(&info->mapi))
 		return (0);	
-	draw(info);
 	return (1);
 }

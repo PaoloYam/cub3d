@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/17 10:42:39 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/17 11:54:30 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,21 @@ struct s_map {
 	char	**map;
 	int		pos_y;
 	int		pos_x;	
+	char	P;
 	int 	w;
 	int		h;
 };
 
 typedef struct s_info	t_info;
 struct s_info {
-	t_map	*mapi;	
+	t_map	mapi;	
 	void	*mlx;
 	void	*win;
 };
 
 /*	MAP */
 
-int	map_maker(char **argv, t_info *info);
+int		map_maker(char **argv, t_info *info);
 void	draw(t_info *info);
 
 #endif
