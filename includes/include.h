@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
 /*   Updated: 2022/11/17 11:54:30 by pyammoun         ###   ########.fr       */
@@ -26,7 +26,7 @@
 # define Y	80
 # define PX	64
 
-typedef struct s_map t_map;
+typedef struct s_map	t_map;
 struct s_map {
 	char	**map;
 	int		pos_y;
@@ -36,16 +36,43 @@ struct s_map {
 	int		h;
 };
 
+typedef struct s_texture	t_texture;
+struct s_texture {
+	char	*n_wall;
+	char	*s_wall;
+	char	*w_wall;
+	char	*e_wall;
+	char	*floor;
+	char	*ceiling;
+};
+
 typedef struct s_info	t_info;
 struct s_info {
 	t_map	mapi;	
 	void	*mlx;
 	void	*win;
+	t_texture	texture;
+	char		**info;
 };
 
 /*	MAP */
 
+
 int		map_maker(char **argv, t_info *info);
 void	draw(t_info *info);
+void	final_map(t_map *mapi);
+int		map_maker(char **argv, t_info *info);
+int		line_number(char *argv, t_info *info);
+
+/* TEXTURE */
+
+int		load_info(t_info *info, char **argv);
+void	initialize_texture(t_info *info);
+void	free_dub_tab(char **str, int n);
+int		check_info(t_info *info);
+int		all_num(char *str);
+int		all_info(t_info *info);
+void	load_map(int i, int line, int fd, t_info *info);
+int		free_texture(t_info *info, int line);
 
 #endif
