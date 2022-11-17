@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/15 18:25:40 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:28:41 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ struct s_texture {
 
 typedef struct s_info	t_info;
 struct s_info {
-	t_map		*mapi;
-	t_texture	*texture;
+	t_map		mapi;
+	t_texture	texture;
 	char		**info;
 };
 
@@ -58,10 +58,11 @@ int		line_number(char *argv, t_info *info);
 
 int		load_info(t_info *info, char **argv);
 void	initialize_texture(t_info *info);
-void	free_split(char **split);
+void	free_dub_tab(char **str, int n);
 int		check_info(t_info *info);
-int		all_num(char **str);
+int		all_num(char *str);
 int		all_info(t_info *info);
 void	load_map(int i, int line, int fd, t_info *info);
+int		free_texture(t_info *info, int line);
 
 #endif

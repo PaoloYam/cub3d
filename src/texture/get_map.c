@@ -6,23 +6,11 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:26:58 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/15 18:26:45 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/17 15:45:52 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/include.h"
-
-void	get_map(t_info *info, char *str)
-{
-	static int	j = 0;
-
-	if (str)
-	{
-		info->mapi->map[j] = ft_strdup(str);
-		printf("%s", info->mapi->map[j]);
-	}
-	j++;
-}
 
 int	only_space(char *str)
 {
@@ -42,10 +30,8 @@ int	only_space(char *str)
 
 void	load_map(int i, int line, int fd, t_info *info)
 {
-	t_map	mapi;
 	int		j;
 
-	info->mapi = &mapi;
 	while (i < line)
 	{
 		info->info[i] = get_next_line(fd);
@@ -53,23 +39,16 @@ void	load_map(int i, int line, int fd, t_info *info)
 			break ;
 		i++;
 	}
-	info->mapi->map = malloc((line - i - 1) * sizeof(*(info->mapi->map)));
-	if (!info->mapi->map)
+	info->mapi.map = malloc((line - i - 1) * sizeof(*(info->mapi.map)));
+	if (!info->mapi.map)
 		return ;
-		info->mapi->h = line - i - 1;
+		info->mapi.h = line - i - 1;
 	j = 0;
 	while (i < line - 1)
 	{	
-		info->mapi->map[j] = ft_strdup(info->info[i]);
-		// printf("mapi : %s", info->mapi->map[j]);
+		info->mapi.map[j] = ft_strdup(info->info[i]);
 		info->info[i + 1] = get_next_line(fd);
 		i++;
 		j++;
 	}
-	i = 0;
-	// while (i < info->mapi->h)
-	// {
-	// 	printf("mapi : %s", info->mapi->map[i]);
-	// 	i++;
-	// }
 }
