@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/17 12:16:49 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:10:18 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,20 @@ int	control_map(char **map, int line)
 	int	i;
 	int	m;
 
-	i = -1;
-	while (map[0][++i] != '\n')
+	i = 0;
+	while (map[0][i] != '\n')
+	{
 		if (map[0][i] != '1' && map[0][i] != ' ')
 			return (0);
-	i = -1;
-	while (map[line][++i])
+		i++;
+	}
+	i = 0;
+	while (map[line][i])
+	{
 		if (map[line][i] != '1' && map[line][i] != ' ')
 			return (0);
+		i++;
+	}
 	m = -1;
 	//verif si espace apres fin de ligne
 	while (++m <= line)
@@ -128,7 +134,7 @@ int	control_map4(t_map *mapi)
 	i = 0;
 	while (++m < (mapi->h))
 	{
-		while (mapi->map[m][i] != '\n' && mapi->map[m][i] != '\0')
+		while (i < ft_strlen(mapi->map[m]) && mapi->map[m][i] != '\n' && mapi->map[m][i] != '\0')
 		{
 			if (mapi->map[m][i] == ' ' || mapi->map[m][i] == '1' || 
 				mapi->map[m][i] == '0' || mapi->map[m][i] == 'N' ||
@@ -173,21 +179,12 @@ int	control_map5(t_map *mapi)
 	return (1);	
 }
 
-int	map_maker(char **argv, t_info *info)
+int	map_maker(t_info *info)
 {
 	int		i;
-	int		fd;
-	int		line;
-
+	
 	i = 0;
-	line = line_number(argv[1], info);
-	info->mapi.map = malloc(sizeof(*(info->mapi.map)) * line);
-	if (info->mapi.map == NULL)
-		return (0);
-	fd = open(argv[1], O_RDONLY);
-	while (i < line)
-		info->mapi.map[i++] = get_next_line(fd);
-	if (!control_map(info->mapi.map, line - 1))
+	if (!control_map(info->mapi.map, info->mapi.h - 1))
 		return (0);
 	if (!control_map2(&info->mapi))
 		return (0);
@@ -196,6 +193,7 @@ int	map_maker(char **argv, t_info *info)
 	if (!control_map4(&info->mapi))
 		return (0);
 	if (!control_map5(&info->mapi))
-		return (0);	
+		return (0);
+	final_map(info->mapi);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/17 11:54:30 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:11:27 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,9 @@ struct s_info {
 
 /*	MAP */
 
-
-int		map_maker(char **argv, t_info *info);
 void	draw(t_info *info);
-void	final_map(t_map *mapi);
-int		map_maker(char **argv, t_info *info);
+void	final_map(t_map mapi);
+int		map_maker(t_info *info);
 int		line_number(char *argv, t_info *info);
 
 /* TEXTURE */
