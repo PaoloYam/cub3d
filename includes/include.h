@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/22 15:22:05 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:37:32 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,21 @@ struct s_texture {
 	char	*ceiling;
 };
 
+typedef	struct s_img	t_img;
+struct	s_img {
+	void	*img;
+	char	*addr;
+	int		bits;
+	int		len;
+	int		endian;
+};
+
 typedef struct s_info	t_info;
 struct s_info {
-	t_map	mapi;	
-	void	*mlx;
-	void	*win;
+	t_map		mapi;	
+	void		*mlx;
+	void		*win;
+	t_img		img;
 	t_texture	texture;
 	char		**info;
 };
