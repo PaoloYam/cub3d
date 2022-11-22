@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/22 15:22:05 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:36:19 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define X	40
 # define Y	40
 # define PX	1
+# define PI 3.1415926535
 
 typedef struct s_map	t_map;
 struct s_map {

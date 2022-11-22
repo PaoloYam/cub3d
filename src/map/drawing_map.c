@@ -30,18 +30,11 @@ void	draw_cube(t_info *info, int l, int c)
 			if (info->mapi.map[l][c] == '1')
 				mlx_pixel_put(info->mlx, info->win,  j, i, 0x515151);
 			else if (info->mapi.map[l][c] == '0')
-				mlx_pixel_put(info->mlx, info->win,  j, i, 0xCCCCCC);	
-			else if (l == info->mapi.pos_y && c == info->mapi.pos_x)
-			{
-				mlx_pixel_put(info->mlx, info->win,  l * Y + 4, c * X + 4, 0x222222);	
-				mlx_pixel_put(info->mlx, info->win,  l * Y + 4, c * X + 5, 0x222222);	
-				mlx_pixel_put(info->mlx, info->win,  l * Y + 5, c * X + 4, 0x222222);
-				mlx_pixel_put(info->mlx, info->win,  l * Y + 5, c * X + 5, 0x222222);
-			}
+				mlx_pixel_put(info->mlx, info->win,  j, i, 0xCCCCCC);		
 			++j;
 		}
 		i++;
-	}
+	}	
 }
 
 void	draw(t_info *info)
@@ -49,7 +42,8 @@ void	draw(t_info *info)
 	int	m;
 	int	i;
 
-	m = -1;	
+	m = -1;
+	printf("pos x: %d\n", info->mapi.pos_x);	
 	while (++m < info->mapi.h)
 	{
 		i = 0;
@@ -59,4 +53,5 @@ void	draw(t_info *info)
 			i++;
 		}
 	}
+
 }
