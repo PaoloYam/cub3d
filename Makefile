@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+         #
+#    By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 10:40:50 by pyammoun          #+#    #+#              #
-#    Updated: 2022/11/22 19:20:22 by tbrulhar         ###   ########.fr        #
+#    Updated: 2022/11/22 21:01:23 by theophilebr      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/22 19:19:31 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:47:29 by theophilebr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,29 @@
 # include "../mlx/mlx.h"
 
 # define SIZE 20
-# define X	40
-# define Y	40
+# define X	60
+# define Y	60
+# define P_SIZE (X / 5)
 # define PX	1
 # define PI 3.1415926535
 
 typedef struct s_map	t_map;
 struct s_map {
 	char	**map;
+	int		co_y;
+	int		co_x;
+	int		pos_x;
 	int		pos_y;
-	int		pos_x;	
 	char	P;
 	int 	w;
 	int		h;
+};
+
+typedef struct s_key	t_key;
+struct	s_key {
+	int	y;
+	int	x;
+	int	many;
 };
 
 typedef struct s_texture	t_texture;
@@ -63,6 +73,7 @@ struct s_info {
 	void		*win;
 	t_img		img;
 	t_texture	texture;
+	t_key		key;
 	char		**info;
 };
 
