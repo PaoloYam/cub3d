@@ -25,6 +25,7 @@
 # define X	40
 # define Y	40
 # define PX	1
+# define PI 3.1415926535
 
 typedef struct s_map	t_map;
 struct s_map {

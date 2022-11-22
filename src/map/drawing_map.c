@@ -54,7 +54,8 @@ void	draw(t_info *info)
 	int	m;
 	int	i;
 
-	m = -1;	
+	m = -1;
+	printf("pos x: %d\n", info->mapi.pos_x);	
 	while (++m < info->mapi.h)
 	{
 		i = 0;
