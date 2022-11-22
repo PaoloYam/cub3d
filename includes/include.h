@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/17 16:11:27 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:22:05 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include "../mlx/mlx.h"
 
 # define SIZE 20
-# define X	80
-# define Y	80
-# define PX	64
+# define X	40
+# define Y	40
+# define PX	1
 
 typedef struct s_map	t_map;
 struct s_map {
@@ -58,7 +58,7 @@ struct s_info {
 /*	MAP */
 
 void	draw(t_info *info);
-void	final_map(t_map mapi);
+void	final_map(t_map *mapi);
 int		map_maker(t_info *info);
 int		line_number(char *argv, t_info *info);
 

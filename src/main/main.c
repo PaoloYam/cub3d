@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:10:40 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/17 16:39:27 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:49:59 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	main(int argc, char **argv)
 	if (!map_maker(&info))
 		return (0);
 	info.mlx = mlx_init();
-	info.win = mlx_new_window(info.mlx, 1960, 1080, "CUB3D");
+	info.win = mlx_new_window(info.mlx, info.mapi.w * X,
+		info.mapi.h * Y, "CUB3D");
 	draw(&info);
 	mlx_loop(info.mlx);
 	return (0);

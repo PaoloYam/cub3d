@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/17 16:10:18 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:20:28 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,6 @@ int	map_maker(t_info *info)
 		return (0);
 	if (!control_map5(&info->mapi))
 		return (0);
-	final_map(info->mapi);
+	final_map(&info->mapi);
 	return (1);
 }

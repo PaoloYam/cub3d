@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filling_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:44:51 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/17 16:38:15 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/22 15:21:37 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,22 @@ char	*filling_map(char *str, int len)
 	return (dest);
 }
 
-void	final_map(t_map mapi)
+void	final_map(t_map *mapi)
 {
 	int	i;
 
 	i = 0;
-	mapi.w = 0;
-	while (i < mapi.h)
+	mapi->w = 0;
+	while (i < mapi->h)
 	{
-		if (mapi.w < ft_strlen_n(mapi.map[i]))
-			mapi.w = ft_strlen_n(mapi.map[i]);
+		if (mapi->w < ft_strlen_n(mapi->map[i]))
+			mapi->w = ft_strlen_n(mapi->map[i]);
 		i++;
 	}
 	i = 0;
-	while (i < mapi.h)
+	while (i < mapi->h)
 	{
-		mapi.map[i] = filling_map(mapi.map[i], mapi.w);
+		mapi->map[i] = filling_map(mapi->map[i], mapi->w);
 		i++;
 	}
 }
