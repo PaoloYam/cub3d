@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:10:40 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/22 16:53:58 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/22 19:21:11 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	main(int argc, char **argv)
 			info.mapi.h * Y);
 	info.img.addr = mlx_get_data_addr(info.img.img, &info.img.bits,
 			&info.img.len, &info.img.endian);
-	draw(&info);
+	draw(&info, 0, 0);
+	mlx_hook(info.win, 2, 1L << 0, change_position, &info);
 	mlx_loop(info.mlx);
 	return (0);
 }

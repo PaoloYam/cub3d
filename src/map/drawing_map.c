@@ -21,10 +21,12 @@ void	ft_put_pixel(t_info *info, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw_cube(t_info *info, int l, int c)
+void	draw_cube(t_info *info, int l, int c, int xm, int ym)
 {
 	int	i;
 	int	j;
+	static int x = 0;
+	static int y = 0;
 
 	i = l * Y;
 	while (i < (l * Y + Y - 1))
@@ -41,27 +43,33 @@ void	draw_cube(t_info *info, int l, int c)
 		i++;
 	}
 	if (l == info->mapi.pos_y && c == info->mapi.pos_x)
-	{
-		ft_put_pixel(info, (c * X) + (X / 2), (l * Y) + (Y / 2), 0x00FF0000);
-		ft_put_pixel(info, (c * X) + (X / 2) + 1, (l * Y) + (Y / 2), 0x00FF0000);
-		ft_put_pixel(info, (c * X) + (X / 2), (l * Y) + (Y / 2) + 1, 0x00FF0000);
-		ft_put_pixel(info,(c * X) + (X / 2) + 1, (l * Y) + (Y / 2) + 1, 0x00FF0000);
+	{	
+		x += xm;
+		y += ym;
+		printf("slaut\n");
+		ft_put_pixel(info, (c * X) + (X / 2 + x), (l * Y) + (Y / 2 + y), 0x00FF0000);
+		ft_put_pixel(info, (c * X) + (X / 2 + x) + 1, (l * Y) + (Y / 2 + y), 0x00FF0000);
+		ft_put_pixel(info, (c * X) + (X / 2 + x), (l * Y) + (Y / 2 + y) + 1, 0x00FF0000);
+		ft_put_pixel(info,(c * X) + (X / 2 + x) + 1, (l * Y) + (Y / 2 + y) + 1, 0x00FF0000);
+		printf("x : %d\n", (c * X) + (X / 2 + x));
+		printf("y : %d\n", (l * Y) + (Y / 2 + y));
+		
 	}
 }
 
-void	draw(t_info *info)
+void	draw(t_info *info, int xm, int ym)
 {
 	int	m;
 	int	i;
 
 	m = -1;
-	printf("pos x: %d\n", info->mapi.pos_x);	
+	printf("pos x: %d\n", info->mapi.pos_x);
 	while (++m < info->mapi.h)
 	{
 		i = 0;
 		while (info->mapi.map[m][i])
 		{
-			draw_cube(info, m, i);
+			draw_cube(info, m, i, xm, ym);
 			i++;
 		}
 	}

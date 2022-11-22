@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/22 18:37:32 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/22 19:19:31 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ struct s_info {
 
 /*	MAP */
 
-void	draw(t_info *info);
+void	draw(t_info *info, int xm, int ym);
 void	final_map(t_map *mapi);
 int		map_maker(t_info *info);
 int		line_number(char *argv, t_info *info);
@@ -84,4 +84,7 @@ int		all_info(t_info *info);
 void	load_map(int i, int line, int fd, t_info *info);
 int		free_texture(t_info *info, int line);
 
+/* HOOKS */
+
+int		change_position(int keycode, t_info *info);
 #endif
