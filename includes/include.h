@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/24 19:42:39 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/24 21:09:46 by theophilebr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,9 @@ int		map_maker(t_info *info);
 int		line_number(char *argv, t_info *info);
 void	init_player(t_info *info);
 void	ft_put_pixel(t_img *img, int x, int y, int color);
-int		check_wall(t_info *info, float ym, float xm);
+int		check_wall(t_info *info, float ym, float xm, int hit_box);
 void	get_map_index(int *i, int *j, float ym, float xm);
+int		create_hit_box(t_info *info, float ym, float xm);
 
 /* TEXTURE */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:10:40 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/24 16:11:18 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/24 20:44:04 by theophilebr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

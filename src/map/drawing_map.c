@@ -12,7 +12,7 @@
 
 #include "../../includes/include.h"
 
-int	check_wall(t_info *info, float ym, float xm)
+int	check_wall(t_info *info, float ym, float xm, int hit_box)
 {
 	int		i;
 	int		j;
@@ -25,6 +25,9 @@ int	check_wall(t_info *info, float ym, float xm)
 	// 	ym += -(P_SIZE / 3);
 	// if (xm < 0)
 	// 	xm += -(P_SIZE / 3);
+	if (hit_box)
+		if (!create_hit_box(info, ym, xm))
+			return (0);
 	get_map_index(&i, &j, ym, xm);
 	if (info->mapi.map[i][j] == '1')
 	{
@@ -80,7 +83,7 @@ void	draw_direction(t_info *info)
 	center_x = info->mapi.co_x + (P_SIZE / 2);
 	center_y = info->mapi.co_y + (P_SIZE / 2);
 	i = 0;
-	while (check_wall(info, center_y, center_x))
+	while (check_wall(info, center_y, center_x, 0))
 	{
 		ft_put_pixel(&info->img, center_x, center_y, 0Xd56ab3);
 		center_x -= info->mapi.d_x / 10;
