@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/24 15:33:27 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:28:41 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ struct s_map {
 	char	**map;
 	float		co_y;
 	float		co_x;
+	float		d_x;
+	float		d_y;
+	float		a;
 	int		pos_x;
 	int		pos_y;
 	char	P;
@@ -76,6 +79,7 @@ void	draw(t_info *info, int xm, int ym);
 void	final_map(t_map *mapi);
 int		map_maker(t_info *info);
 int		line_number(char *argv, t_info *info);
+void	init_player(t_info *info);
 void	ft_put_pixel(t_img *img, int x, int y, int color);
 int		check_wall(t_info *info, int ym, int xm);
 void	get_map_index(t_info *info, int *i, int *j, int ym, int xm);
@@ -95,4 +99,5 @@ int		free_texture(t_info *info, int line);
 
 int		change_position(int keycode, t_info *info);
 void	hooks(t_info *info);
+int		move_camera(int keycode, t_info *info);
 #endif
