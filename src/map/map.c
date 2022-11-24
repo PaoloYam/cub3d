@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/22 15:20:28 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:27:41 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ int	control_map2(t_map *mapi)
 					c = 1;	
 				mapi->pos_x = i;
 				mapi->pos_y = m;
+				mapi->co_x = (i * X) + ((X / 2) - (P_SIZE / 2));
+				mapi->co_y = (m * Y) + (Y / 2)- (P_SIZE / 2);
 			}	
 		}
 	}
@@ -171,7 +173,7 @@ int	control_map5(t_map *mapi)
 				if (mapi->map[m - 1][i] == ' ')
 					return (0);
 				if (mapi->map[m + 1][i] == ' ')
-					return (0);	
+					return (0);
 			}
 			i++;
 		}
