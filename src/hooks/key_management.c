@@ -3,55 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   key_management.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:17:49 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/22 23:00:57 by theophilebr      ###   ########.fr       */
+/*   Updated: 2022/11/24 14:24:55 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/include.h"
 
+// int	check_wall(t_info *info)
+// {
+// 	// int	i;
+// 	// int	j;
+
+// 	// i = (info->mapi.co_y - ((Y / 2) - (P_SIZE / 2)) / Y);
+// 	// j = (info->mapi.co_x - ((X / 2) - (P_SIZE / 2)));
+// 	// if (info->mapi.map[i][j] == '1')
+// 	// 	return (0);
+// 	// //printf("coo : %f %f\n", (info->mapi.co_x - ((X / 2))) / X, (info->mapi.co_y - ((Y / 2) - (P_SIZE / 2))) / Y);
+// 	// return (0);
+// }
+
 int	change_position(int keycode, t_info *info)
 {
-	printf("kezcode : %d\n", keycode);
 	// if (keycode == 53)
 	// 	end_game(game);
-	info->key.x = 0;
-	info->key.many = 0;
-	info->key.y = 0;
-	
+	//check_wall(info);
 	if (keycode == 0 || keycode == 123)
-	{
-		info->key.x = -10;
-		info->key.many += 1;
-	}
+		draw(info, -MOUVE, 0);
 	if (keycode == 1 || keycode == 125)
-	{
-		info->key.y = 10;
-		info->key.many += -1;
-	}	
+		draw(info, 0, MOUVE);
 	if (keycode == 2 || keycode == 124)
-	{
-		info->key.x = 10;
-		info->key.many += 1;
-	}
+		draw(info, MOUVE, 0);
 	if (keycode == 13 || keycode == 126)
-	{
-		info->key.y = -10;
-		info->key.many += -1;
-	}
-		
-	if (info->key.x || info->key.y)
-	{	
-		if (!info->key.many)
-		{
-			printf("on est dans many\n");
-			draw(info, info->key.x, info->key.y);
-		}
-			
-		else
-			draw(info, info->key.x, info->key.y);
-	}
+		draw(info, 0, -MOUVE);
 	return (0);
 }

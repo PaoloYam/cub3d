@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:10:40 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/22 22:55:40 by theophilebr      ###   ########.fr       */
+/*   Updated: 2022/11/24 13:20:12 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int	main(int argc, char **argv)
 	info.img.addr = mlx_get_data_addr(info.img.img, &info.img.bits,
 			&info.img.len, &info.img.endian);
 	draw(&info, 0, 0);
-	info.key.many = 0;
-	mlx_hook(info.win, 2, 1L << 0, change_position, &info);
+	hooks(&info);
 	mlx_loop(info.mlx);
 	return (0);
 }

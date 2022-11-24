@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/22 21:49:24 by theophilebr      ###   ########.fr       */
+/*   Updated: 2022/11/24 13:27:41 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ int	control_map5(t_map *mapi)
 				if (mapi->map[m - 1][i] == ' ')
 					return (0);
 				if (mapi->map[m + 1][i] == ' ')
-					return (0);	
+					return (0);
 			}
 			i++;
 		}

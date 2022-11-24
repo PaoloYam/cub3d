@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/22 22:47:29 by theophilebr      ###   ########.fr       */
+/*   Updated: 2022/11/24 13:57:30 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,18 @@
 # define P_SIZE (X / 5)
 # define PX	1
 # define PI 3.1415926535
+# define MOUVE 1
 
 typedef struct s_map	t_map;
 struct s_map {
 	char	**map;
-	int		co_y;
-	int		co_x;
+	float		co_y;
+	float		co_x;
 	int		pos_x;
 	int		pos_y;
 	char	P;
 	int 	w;
 	int		h;
-};
-
-typedef struct s_key	t_key;
-struct	s_key {
-	int	y;
-	int	x;
-	int	many;
 };
 
 typedef struct s_texture	t_texture;
@@ -73,7 +67,6 @@ struct s_info {
 	void		*win;
 	t_img		img;
 	t_texture	texture;
-	t_key		key;
 	char		**info;
 };
 
@@ -98,4 +91,5 @@ int		free_texture(t_info *info, int line);
 /* HOOKS */
 
 int		change_position(int keycode, t_info *info);
+void	hooks(t_info *info);
 #endif
