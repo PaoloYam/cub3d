@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/22 18:37:32 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/24 13:57:30 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,20 @@
 # include "../mlx/mlx.h"
 
 # define SIZE 20
-# define X	40
-# define Y	40
+# define X	60
+# define Y	60
+# define P_SIZE (X / 5)
 # define PX	1
 # define PI 3.1415926535
+# define MOUVE 1
 
 typedef struct s_map	t_map;
 struct s_map {
 	char	**map;
+	float		co_y;
+	float		co_x;
+	int		pos_x;
 	int		pos_y;
-	int		pos_x;	
 	char	P;
 	int 	w;
 	int		h;
@@ -68,7 +72,7 @@ struct s_info {
 
 /*	MAP */
 
-void	draw(t_info *info);
+void	draw(t_info *info, int xm, int ym);
 void	final_map(t_map *mapi);
 int		map_maker(t_info *info);
 int		line_number(char *argv, t_info *info);
@@ -84,4 +88,8 @@ int		all_info(t_info *info);
 void	load_map(int i, int line, int fd, t_info *info);
 int		free_texture(t_info *info, int line);
 
+/* HOOKS */
+
+int		change_position(int keycode, t_info *info);
+void	hooks(t_info *info);
 #endif
