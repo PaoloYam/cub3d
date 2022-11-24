@@ -6,24 +6,11 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:17:49 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/24 16:07:16 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:26:41 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/include.h"
-
-// int	check_wall(t_info *info)
-// {
-// 	// int	i;
-// 	// int	j;
-
-// 	// i = (info->mapi.co_y - ((Y / 2) - (P_SIZE / 2)) / Y);
-// 	// j = (info->mapi.co_x - ((X / 2) - (P_SIZE / 2)));
-// 	// if (info->mapi.map[i][j] == '1')
-// 	// 	return (0);
-// 	// //printf("coo : %f %f\n", (info->mapi.co_x - ((X / 2))) / X, (info->mapi.co_y - ((Y / 2) - (P_SIZE / 2))) / Y);
-// 	// return (0);
-// }
 
 int	change_position(int keycode, t_info *info)
 {
@@ -31,12 +18,14 @@ int	change_position(int keycode, t_info *info)
 	// 	end_game(game);
 	//check_wall(info);
 	if (keycode == 0)
+	printf("keycoe : %d\n", keycode);
+	if ((keycode == 0) && check_wall(info, 0, -MOUVE))
 		draw(info, -MOUVE, 0);
-	if (keycode == 1 || keycode == 125)
+	if ((keycode == 1) && check_wall(info, MOUVE, 0))
 		draw(info, 0, MOUVE);
-	if (keycode == 2)
+	if ((keycode == 2) && check_wall(info, 0, MOUVE))
 		draw(info, MOUVE, 0);
-	if (keycode == 13 || keycode == 126)
+	if ((keycode == 13) && check_wall(info, -MOUVE, 0))
 		draw(info, 0, -MOUVE);
 	return (0);
 }
