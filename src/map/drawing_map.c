@@ -68,6 +68,24 @@ void	draw_cube(t_info *info, int l, int c)
 	}
 }
 
+void	draw_direction(t_info *info)
+{
+	float	center_x;
+	float	center_y;
+	int		i;
+
+	center_x = info->mapi.co_x + (P_SIZE / 2);
+	center_y = info->mapi.co_y + (P_SIZE / 2);
+	i = 0;
+	while (i < 300)
+	{
+		ft_put_pixel(&info->img, center_x, center_y,  0Xd56ab3);
+		center_x -= info->mapi.d_x / 10;
+		center_y -= info->mapi.d_y / 10;
+		i++;
+	}
+	
+}
 void	draw(t_info *info, int xm, int ym)
 {
 	int	m;
@@ -85,5 +103,6 @@ void	draw(t_info *info, int xm, int ym)
 		}
 	}
 	draw_player(info, xm, ym);
+	draw_direction(info);
 	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
 }

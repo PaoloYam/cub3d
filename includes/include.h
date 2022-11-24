@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/24 16:28:41 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/24 18:22:52 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # define SIZE 20
 # define X	60
 # define Y	60
-# define P_SIZE (X / 5)
+# define P_SIZE (X / 3)
 # define PX	1
 # define PI 3.1415926535
-# define MOUVE 10
+# define MOUVE 2
 
 typedef struct s_map	t_map;
 struct s_map {
@@ -99,5 +99,5 @@ int		free_texture(t_info *info, int line);
 
 int		change_position(int keycode, t_info *info);
 void	hooks(t_info *info);
-int		move_camera(int keycode, t_info *info);
+//int		move_camera(int keycode, t_info *info);
 #endif
