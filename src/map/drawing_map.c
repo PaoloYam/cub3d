@@ -12,13 +12,23 @@
 
 #include "../../includes/include.h"
 
-void	ft_put_pixel(t_img *img, int x, int y, int color)
+int	check_wall(t_info *info, int ym, int xm)
 {
-	char	*dst;
+	int		i;
+	int		j;
 
-	dst = img->addr + (y * img->len + x
-			* (img->bits / 8));
-	*(unsigned int *)dst = color;
+	if (ym > 0)
+		ym += P_SIZE / 1.3;
+	if (xm > 0)
+		xm += P_SIZE / 1.3;
+	if (ym < 0)
+		ym += -(P_SIZE / 3);
+	if (xm < 0)
+		xm += -(P_SIZE / 3);
+	get_map_index(info, &i, &j, ym, xm);
+	if (info->mapi.map[i][j] == '1')
+		return (0);
+	return (1);
 }
 
 void	draw_player(t_info *info, int xm, int ym)
@@ -43,10 +53,10 @@ void	draw_cube(t_info *info, int l, int c)
 	int	j;
 
 	i = l * Y;
-	while (i < (l * Y + Y - 1))
+	while (i < (l * Y + Y))
 	{
 		j = c * X;
-		while (j < (c * X + X - 1))
+		while (j < (c * X + X))
 		{
 			if (info->mapi.map[l][c] == '1')
 				ft_put_pixel(&info->img, j, i, 0x222222);

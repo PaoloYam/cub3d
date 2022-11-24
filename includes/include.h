@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/22 19:02:33 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/11/24 15:33:27 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define P_SIZE (X / 5)
 # define PX	1
 # define PI 3.1415926535
-# define MOUVE 1
+# define MOUVE 10
 
 typedef struct s_map	t_map;
 struct s_map {
@@ -76,6 +76,9 @@ void	draw(t_info *info, int xm, int ym);
 void	final_map(t_map *mapi);
 int		map_maker(t_info *info);
 int		line_number(char *argv, t_info *info);
+void	ft_put_pixel(t_img *img, int x, int y, int color);
+int		check_wall(t_info *info, int ym, int xm);
+void	get_map_index(t_info *info, int *i, int *j, int ym, int xm);
 
 /* TEXTURE */
 

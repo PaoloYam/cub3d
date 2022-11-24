@@ -6,12 +6,12 @@
 #    By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 10:40:50 by pyammoun          #+#    #+#              #
-#    Updated: 2022/11/24 14:23:48 by tbrulhar         ###   ########.fr        #
+#    Updated: 2022/11/24 15:28:31 by tbrulhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = ${addprefix	src/main/, main.c}
-SRCS += ${addprefix src/map/, filling_map.c map.c drawing_map.c}
+SRCS += ${addprefix src/map/, filling_map.c map.c drawing_map.c map_utils.c}
 SRCS += ${addprefix get_next_line/, get_next_line_utils.c get_next_line.c}
 SRCS += ${addprefix src/texture/, getting_texture.c texture_utils.c check_info.c get_map.c} 
 SRCS += ${addprefix src/hooks/, hooks.c key_management.c}
