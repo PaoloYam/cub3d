@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:20:41 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/24 19:57:14 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/24 21:18:22 by theophilebr      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,24 @@ void	get_map_index(int *i, int *j, float ym, float xm)
 		*i += 1;
 	if (tmp_x > 0.5)
 		*j += 1;
+	printf("i : %d\n j : %d\n\n", *i, *j);
+}
+
+int	create_hit_box(t_info *info, float ym, float xm)
+{
+	float	center_x;
+	float	center_y;
+	int		i;
+
+	center_x = info->mapi.co_x + (P_SIZE / 2);
+	center_y = info->mapi.co_y + (P_SIZE / 2);
+	i = 0;
+	while (check_wall(info, center_y, center_x, 0))
+	{
+		ft_put_pixel(&info->img, center_x, center_y, 0Xd56ab3);
+		center_x -= xm / 10;
+		center_y -= ym / 10;
+		i++;
+	}
+	return (1);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+         #
+#    By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 10:40:50 by pyammoun          #+#    #+#              #
-#    Updated: 2022/11/24 18:17:05 by tbrulhar         ###   ########.fr        #
+#    Updated: 2022/11/24 20:47:23 by theophilebr      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ NAME        =	cub3D
 AR    		=	ar rcs
 GCC       	=	gcc 
 RM       	=	rm -f
-CFLAGS    	=	-Wall -Wextra -Werror 
+CFLAGS    	=	-Wall -Wextra -Werror -g -fsanitize=address 
 INC_FLAGS 	:= -Ilibft/incs
 INC_DIR 	?= ./includes
 INC_FLAGS 	+= $(addprefix -I,$(INC_DIRS))
