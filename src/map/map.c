@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/24 13:27:41 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/25 16:18:34 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	control_map2(t_map *mapi)
 				mapi->pos_y = m;
 				mapi->co_x = (i * X) + ((X / 2) - (P_SIZE / 2));
 				mapi->co_y = (m * Y) + (Y / 2)- (P_SIZE / 2);
+				//printf("co_x : %f\nco_y : %f\n", mapi->co_x, mapi->co_y);
 			}	
 		}
 	}

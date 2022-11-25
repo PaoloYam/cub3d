@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 13:08:56 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/24 18:20:33 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/25 13:52:35 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	init_player(t_info *info)
 		info->mapi.a = PI;
 	else if (info->mapi.P == 'S')
 		info->mapi.a = 3 * PI / 2;
-	info->mapi.d_x = cos(info->mapi.a) * 5;
-	info->mapi.d_y = sin(info->mapi.a) * 5;
+	info->mapi.d_x = cos(info->mapi.a * 5);
+	info->mapi.d_y = sin(info->mapi.a * 5);
 }
