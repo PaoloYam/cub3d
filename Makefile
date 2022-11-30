@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+         #
+#    By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 10:40:50 by pyammoun          #+#    #+#              #
-#    Updated: 2022/11/24 20:47:23 by theophilebr      ###   ########.fr        #
+#    Updated: 2022/11/29 18:14:01 by pyammoun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = ${addprefix	src/main/, main.c}
 SRCS += ${addprefix src/map/, filling_map.c map.c drawing_map.c map_utils.c}
+SRCS += ${addprefix src/raycast/, wall.c}
 SRCS += ${addprefix get_next_line/, get_next_line_utils.c get_next_line.c}
 SRCS += ${addprefix src/texture/, getting_texture.c texture_utils.c check_info.c get_map.c} 
 SRCS += ${addprefix src/hooks/, hooks.c key_management.c}

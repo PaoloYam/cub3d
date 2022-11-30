@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/25 14:48:29 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:13:17 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,16 @@ struct s_map {
 	float		d_x;
 	float		d_y;
 	float		a;
+	float		prt;
+	float		wx;
+	float		wy;
 	int		pos_x;
 	int		pos_y;
 	char	P;
 	int 	w;
 	int		h;
+	char	lstw;
+	
 };
 
 typedef struct s_texture	t_texture;
@@ -65,13 +70,18 @@ struct	s_img {
 
 typedef struct s_info	t_info;
 struct s_info {
-	t_map		mapi;	
+	t_map		mapi;
+	int			side;	
 	void		*mlx;
 	void		*win;
 	t_img		img;
 	t_texture	texture;
 	char		**info;
 };
+
+
+/* RAYCAST */
+void	wall_face(float x, float y, t_info *info);
 
 /*	MAP */
 
@@ -82,7 +92,7 @@ int		line_number(char *argv, t_info *info);
 void	init_player(t_info *info);
 void	ft_put_pixel(t_img *img, int x, int y, int color);
 int		check_wall(t_info *info, float ym, float xm, int hit_box);
-void	get_map_index(int *i, int *j, float ym, float xm);
+int		get_map_index(int *i, int *j, float ym, float xm);
 int		create_hit_box(t_info *info, float ym, float xm);
 
 /* TEXTURE */
