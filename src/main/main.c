@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: theophilebrulhart <theophilebrulhart@st    +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 16:10:40 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/24 20:44:04 by theophilebr      ###   ########.fr       */
+/*   Updated: 2022/12/01 17:26:29 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	info.mlx = mlx_init();
 	info.win = mlx_new_window(info.mlx, info.mapi.w * X,
 			info.mapi.h * Y, "CUB3D");
+	
 	info.img.img = mlx_new_image(info.mlx, info.mapi.w * X,
 			info.mapi.h * Y);
 	info.img.addr = mlx_get_data_addr(info.img.img, &info.img.bits,

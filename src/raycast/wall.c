@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 18:07:14 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/30 15:16:46 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/01 16:40:30 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,36 @@
 // 	// ft_sub
 // }
 
+void	draw_wall(t_info *info)
+{
+	info->ray.lH = info->mapi.h * Y / info->ray.dst;
+		
+}
+
+
 
 void	find_wall(float x, float y, t_info *info, int v)
 {
 	 if (v == 1)
 	 {
-		info->mapi.prt = y;
-		if (info->mapi.co_x < info->mapi.wx)
-			info->mapi.lstw = 'W';
-		else if (info->mapi.co_x > info->mapi.wx)
-			info->mapi.lstw = 'E'; 
+		info->ray.prt = y;
+		if (info->mapi.co_x < info->ray.wx)
+			info->ray.lstw = 'W';
+		else if (info->mapi.co_x > info->ray.wx)
+			info->ray.lstw = 'E'; 
 	}
 	else if (v == 2)
 	{
-		info->mapi.prt = x;
-		if (info->mapi.co_y < info->mapi.wy)
-			info->mapi.lstw = 'N';
-		else if (info->mapi.co_y > info->mapi.wy)
-			info->mapi.lstw = 'S'; 
+		info->ray.prt = x;
+		if (info->mapi.co_y < info->ray.wy)
+			info->ray.lstw = 'N';
+		else if (info->mapi.co_y > info->ray.wy)
+			info->ray.lstw = 'S'; 
 	}
-	printf("la: %c\n", info->mapi.lstw);
+	/*printf("distance: %d\n", info->ray.dst);
+	printf("Face: %c\n", info->ray.lstw);
+	printf("pourcentage: %f\n", info->ray.prt);*/
+	
 }
 
 
@@ -53,7 +63,7 @@ void	wall_face(float x, float y, t_info *info)
 	yi = y;
 	x = x - xi;
 	y = y - yi;
-	printf("calcul x: %f & y: %f\n", x, y);
+	//printf("calcul x: %f & y: %f\n", x, y);
 	if (x > 0.5)
 	{
 		if (1 - x < 0.001)

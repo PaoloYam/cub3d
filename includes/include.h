@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/30 15:13:17 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/01 11:28:21 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,23 @@ struct s_map {
 	float		d_x;
 	float		d_y;
 	float		a;
-	float		prt;
-	float		wx;
-	float		wy;
 	int		pos_x;
 	int		pos_y;
 	char	P;
 	int 	w;
 	int		h;
-	char	lstw;
-	
 };
+
+typedef struct s_ray	t_ray;
+struct s_ray {
+	char	lstw;
+	int		dst;
+	float	prt;
+	float	lH;
+	float	wx;
+	float	wy;
+};
+
 
 typedef struct s_texture	t_texture;
 struct s_texture {
@@ -76,6 +82,7 @@ struct s_info {
 	void		*win;
 	t_img		img;
 	t_texture	texture;
+	t_ray		ray;
 	char		**info;
 };
 

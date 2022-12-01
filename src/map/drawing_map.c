@@ -21,7 +21,7 @@ int	check_wall(t_info *info, float ym, float xm, int hit_box)
 	side = get_map_index(&i, &j, ym, xm);
 	if (info->mapi.map[i][j] == '1')
 	{
-		printf("WALL : %d & %d\n", i, j);
+		//printf("WALL : %d & %d\n", i, j);
 		info->side = side;
 		return (0);
 	}
@@ -51,10 +51,10 @@ void	draw_cube(t_info *info, int l, int c)
 	int	j;
 
 	i = l * Y;
-	while (i < (l * Y + Y - 1))
+	while (i < (l * Y + Y))
 	{
 		j = c * X;
-		while (j < (c * X + X - 1))
+		while (j < (c * X + X))
 		{
 			if (info->mapi.map[l][c] == '1')
 				ft_put_pixel(&info->img, j, i, 0x222222);
@@ -74,10 +74,12 @@ void	draw_direction(t_info *info)
 	float	i;
 	float	new_angle_x;
 	float	new_angle_y;
+	int		d;
 
-	i = 0;
+	i = -1;
 	while (i < 1)
 	{	
+		d = 0;
 		new_angle_x = cos(info->mapi.a - i) * SPEED;
 		new_angle_y = sin(info->mapi.a - i) * SPEED;
 		center_x = info->mapi.co_x + (P_SIZE / 2);
@@ -85,14 +87,16 @@ void	draw_direction(t_info *info)
 		while (check_wall(info, center_y, center_x, 0))
 		{
 			ft_put_pixel(&info->img, center_x, center_y, 0Xd56ab3);
+			d++;
 			center_x -= new_angle_x / 1000;
 			center_y -= new_angle_y / 1000;
 		}
-		printf("x: %f & y: %f\n", center_x / X, center_y / Y );
-		info->mapi.wx = center_x;
-		info->mapi.wy = center_y;
+		//printf("x: %f & y: %f\n", center_x / X, center_y / Y );
+		info->ray.wx = center_x;
+		info->ray.wy = center_y;
+		info->ray.dst = d;
 		wall_face(center_x / X, center_y / Y, info);
-		i += 1;
+		i += 0.01;
 	}
 	
 }
