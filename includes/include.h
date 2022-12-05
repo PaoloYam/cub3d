@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/25 14:48:29 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:07:05 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 # include "../mlx/mlx.h"
 
 # define SIZE 20
-# define X	60
-# define Y	60
+# define X	20
+# define Y	20
+# define RES_X 1920
+# define RES_Y 1080
 # define P_SIZE (X / 3)
 # define PX	1
 # define PI 3.1415926535
-# define SPEED 10
+# define SPEED 3
 
 typedef struct s_map	t_map;
 struct s_map {
@@ -43,6 +45,19 @@ struct s_map {
 	int 	w;
 	int		h;
 };
+
+typedef struct s_ray	t_ray;
+struct s_ray {
+	char	lstw;
+	float	dst;
+	float	prt;
+	float	lH;
+	float	wx;
+	float	wy;
+	int		num;
+	float	ray_ang;
+};
+
 
 typedef struct s_texture	t_texture;
 struct s_texture {
@@ -65,13 +80,22 @@ struct	s_img {
 
 typedef struct s_info	t_info;
 struct s_info {
-	t_map		mapi;	
+	t_map		mapi;
+	int			side;	
 	void		*mlx;
 	void		*win;
+	void		*mlxu;
+	void		*winu;
 	t_img		img;
+	t_img		imgu;
 	t_texture	texture;
+	t_ray		ray;
 	char		**info;
 };
+
+
+/* RAYCAST */
+void	wall_face(float x, float y, t_info *info);
 
 /*	MAP */
 
@@ -82,8 +106,9 @@ int		line_number(char *argv, t_info *info);
 void	init_player(t_info *info);
 void	ft_put_pixel(t_img *img, int x, int y, int color);
 int		check_wall(t_info *info, float ym, float xm, int hit_box);
-void	get_map_index(int *i, int *j, float ym, float xm);
+int		get_map_index(int *i, int *j, float ym, float xm);
 int		create_hit_box(t_info *info, float ym, float xm);
+void	clear_img(t_info *info);
 
 /* TEXTURE */
 

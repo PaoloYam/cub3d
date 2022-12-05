@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:20:41 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/25 14:56:31 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/05 14:38:24 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ void	ft_put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x > RES_X || y > RES_Y)
+		return;
 	dst = img->addr + (y * img->len + x
 			* (img->bits / 8));
 	*(unsigned int *)dst = color;
 }
 
-void	get_map_index(int *i, int *j, float ym, float xm)
+int	get_map_index(int *i, int *j, float ym, float xm)
 {
 	float	tmp_y;
 	float	tmp_x;
@@ -32,21 +34,29 @@ void	get_map_index(int *i, int *j, float ym, float xm)
 	*j = tmp_x;
 	tmp_y = tmp_y - *i;
 	tmp_x = tmp_x - *j;
-	//printf(" tmp_y : %f\ntmp_x : %f\n", tmp_y, tmp_x);
-	// printf(" ym : %f\nxm : %f\n", ym, xm);
-	if (tmp_y > 0.49999)
-	{
-		//printf("i + 1\n");
+	if (tmp_y > 0.499999)
 		*i += 1;
-	}
 	if (tmp_x > 0.499999)
-	{
-		//printf("j + 1\n");
 		*j += 1;
-	}
-		
+	return (0);
 	//printf("i : %d\n j : %d\n\n", *i, *j);
 }
+
+void	clear_img(t_info *info)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < RES_Y)
+	{
+		j = 0;
+		while (j++ < RES_X)
+			ft_put_pixel(info->imgu.img, i, j, 0x0);
+		i++;
+	}
+}
+
 
 // void	get_horiontal_line(t_info *info)
 // {
