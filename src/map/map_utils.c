@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:20:41 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/30 11:02:56 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/05 14:38:24 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x > RES_X || y > RES_Y)
+		return;
 	dst = img->addr + (y * img->len + x
 			* (img->bits / 8));
 	*(unsigned int *)dst = color;
@@ -39,6 +41,22 @@ int	get_map_index(int *i, int *j, float ym, float xm)
 	return (0);
 	//printf("i : %d\n j : %d\n\n", *i, *j);
 }
+
+void	clear_img(t_info *info)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < RES_Y)
+	{
+		j = 0;
+		while (j++ < RES_X)
+			ft_put_pixel(info->imgu.img, i, j, 0x0);
+		i++;
+	}
+}
+
 
 // void	get_horiontal_line(t_info *info)
 // {
