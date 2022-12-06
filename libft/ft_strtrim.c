@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 13:54:01 by tbrulhar          #+#    #+#             */
-/*   Updated: 2021/11/03 16:20:06 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/06 15:17:09 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*ft_strtrim(char const *s, char const *set)
 	while (stocki <= i)
 		str[j++] = s[stocki++];
 	str[j] = '\0';
+	free((void *)s);
 	return (str);
 }
 

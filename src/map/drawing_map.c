@@ -17,7 +17,9 @@ int	check_wall(t_info *info, float ym, float xm, int hit_box)
 	int		i;
 	int		j;
 	int		side;
-	(void)hit_box;	
+
+	if (hit_box && !create_hit_box(info, ym, xm, hit_box))
+		return (0);
 	side = get_map_index(&i, &j, ym, xm);
 	if (info->mapi.map[i][j] == '1')
 	{
@@ -25,7 +27,7 @@ int	check_wall(t_info *info, float ym, float xm, int hit_box)
 		info->side = side;
 		return (0);
 	}
-	
+	info->mapi.map[i][j] = '2';
 	return (1);
 }
 
@@ -49,17 +51,22 @@ void	draw_cube(t_info *info, int l, int c)
 {
 	int	i;
 	int	j;
+	int	x;
+	int	y;
 
 	i = l * Y;
+	get_map_index(&y, &x, info->mapi.co_y, info->mapi.co_x);
 	while (i < (l * Y + Y))
 	{
 		j = c * X;
 		while (j < (c * X + X))
 		{
 			if (info->mapi.map[l][c] == '1')
-				ft_put_pixel(&info->img, j, i, 0x222222);
+				ft_put_pixel(&info->img, j, i, 0xffffffff);
 			if (info->mapi.map[l][c] == '0')
-				ft_put_pixel(&info->img, j, i, 0xCCCCCC);
+				ft_put_pixel(&info->img, j, i, 0xffffffff);
+			if (info->mapi.map[l][c] == '2')
+				ft_put_pixel(&info->img, j, i, 0x00808080);
 			++j;
 		}
 		i++;
@@ -92,7 +99,7 @@ void	draw_direction(t_info *info)
 		center_y = info->mapi.co_y + (P_SIZE / 2);
 		while (check_wall(info, center_y, center_x, 0))
 		{
-			// if (info->ray.num == 960)
+			if (info->ray.num == 960)
 				ft_put_pixel(&info->img, center_x, center_y, 0Xd56ab3);
 			if (check_wall(info, center_y - new_angle_y / 50, center_x - new_angle_x / 50, 0) == 0) 
 			{

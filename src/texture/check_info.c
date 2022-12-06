@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:40:48 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/17 15:45:51 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/06 13:07:00 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,13 @@ int	check_info(t_info *info)
 		printf("Error :range color : floor\n");
 		return (0);
 	}
+	else
+		info->texture.floor_int = integer_color(info->texture.floor);
 	if (!color_range(info->texture.ceiling))
 	{
 		printf("Error :range color : ceiling\n");
 		return (0);
 	}
+	info->texture.ceiling_int = integer_color(info->texture.ceiling);
 	return (1);
 }
