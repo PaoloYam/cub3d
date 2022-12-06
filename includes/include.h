@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/12/05 18:07:05 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:08:49 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@
 # define P_SIZE (X / 3)
 # define PX	1
 # define PI 3.1415926535
-# define SPEED 3
+# define SPEED 7
+# define HIT_BOX 2
+#define	MINIMAP 10
 
 typedef struct s_map	t_map;
 struct s_map {
@@ -65,8 +67,21 @@ struct s_texture {
 	char	*s_wall;
 	char	*w_wall;
 	char	*e_wall;
-	char	*floor;
-	char	*ceiling;
+	char	*floor; //a free a la fin
+	char	*ceiling;//a free a la fin
+	int		ceiling_int;
+	int		floor_int;
+};
+
+typedef struct s_wall	t_wall; //a free a la fin * nbr de texture
+struct s_wall {
+	void	*wall; //wall[i++] = nord -> sud -> est -> west
+	int		bits;
+	int		len;
+	int		endian;
+	int		width;
+	int		heigth;
+	int		*addr;
 };
 
 typedef	struct s_img	t_img;
@@ -90,12 +105,14 @@ struct s_info {
 	t_img		imgu;
 	t_texture	texture;
 	t_ray		ray;
+	t_wall		*wall;
 	char		**info;
 };
 
 
 /* RAYCAST */
 void	wall_face(float x, float y, t_info *info);
+int 	get_pixel_color(t_info *info, int i, int x, int y);
 
 /*	MAP */
 
@@ -107,7 +124,7 @@ void	init_player(t_info *info);
 void	ft_put_pixel(t_img *img, int x, int y, int color);
 int		check_wall(t_info *info, float ym, float xm, int hit_box);
 int		get_map_index(int *i, int *j, float ym, float xm);
-int		create_hit_box(t_info *info, float ym, float xm);
+int		create_hit_box(t_info *info, float ym, float xm, int key);
 void	clear_img(t_info *info);
 
 /* TEXTURE */
@@ -120,6 +137,8 @@ int		all_num(char *str);
 int		all_info(t_info *info);
 void	load_map(int i, int line, int fd, t_info *info);
 int		free_texture(t_info *info, int line);
+int		integer_color(char *str);
+int		load_texture(t_info *info);
 
 /* HOOKS */
 

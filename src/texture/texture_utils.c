@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:50:32 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/11/17 15:45:54 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/06 13:23:10 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,30 @@ int	free_texture(t_info *info, int line)
 	free(info->texture.s_wall);
 	free(info->texture.e_wall);
 	free(info->texture.w_wall);
-	free(info->texture.floor);
-	free(info->texture.ceiling);
+	if (info->texture.floor)
+		free(info->texture.floor);
+	if (info->texture.ceiling)
+		free(info->texture.ceiling);
 	return (0);
+}
+
+int	integer_color(char *str)
+{
+	char	color[10];
+	int		color_int;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			i++;
+		color[j] = str[i];
+		j++;
+		i++;
+	}
+	color_int = ft_atoi(color);
+	return (color_int);
 }

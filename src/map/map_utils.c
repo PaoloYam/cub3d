@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:20:41 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/05 14:38:24 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:03:55 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_put_pixel(t_img *img, int x, int y, int color)
 	char	*dst;
 
 	if (x > RES_X || y > RES_Y)
-		return;
+		return ;
 	dst = img->addr + (y * img->len + x
 			* (img->bits / 8));
 	*(unsigned int *)dst = color;
@@ -57,87 +57,39 @@ void	clear_img(t_info *info)
 	}
 }
 
-
-// void	get_horiontal_line(t_info *info)
-// {
-// 	int	i;
-// 	int	mx, my, mp, dof;
-// 	float rx, ry, ra, xo, yo, a_tan;
-
-// 	ra = info->mapi.a;
-// 	i = 0;
-// 	while (i < 1)
-// 	{
-// 		dof = 0;
-// 		a_tan = -1/tan(ra);
-// 		if (ra > PI)
-// 		{
-// 			ry = (((int)info->mapi.co_y >> 6) << 6) - 0.0001;
-// 			rx = (info->mapi.co_y - ry) * a_tan + info->mapi.co_x;
-// 			yo = -64;
-// 			xo = -yo * a_tan;
-// 		}
-// 		if (ra < PI)
-// 		{
-// 			ry = (((int)info->mapi.co_y >> 6) << 6) + 64;
-// 			rx = (info->mapi.co_y - ry) * a_tan + info->mapi.co_x;
-// 			yo = 64;
-// 			xo = -yo * a_tan;
-// 		}
-// 		if (ra == 0 || ra == PI)
-// 		{
-// 			rx = info->mapi.co_x;
-// 			ry = info->mapi.co_y;
-// 			dof = 8;
-// 		}
-// 		while (dof < 8)
-// 		{
-// 			mx = (int) (rx) >> 6;
-// 			my = (int) (ry) >> 6;
-// 			mp = my * X + mx;
-// 			if (mp < X * Y && info->mapi.map[mp] == "1")
-// 				dof = 8;
-// 			else
-// 			{
-// 				rx += xo;
-// 				ry += yo;
-// 				dof += 1;
-// 			}
-// 		}
-// 		ft_put_pixel(&info->img, rx, ry, 0Xd56ab3);
-// 	}
-// }
-
-int	create_hit_box(t_info *info, float ym, float xm)
+int	create_hit_box(t_info *info, float ym, float xm, int key)
 {
 	int		i;
 	int		j;
+	(void) key;
 
-	get_map_index(&i, &j, ym, xm);
+	get_map_index(&i, &j, ym - HIT_BOX, xm - HIT_BOX);
 	if (info->mapi.map[i][j] == '1')
 	{
-		printf("\n\npixel haut gacuhe = wall\n");
-		printf("i : %d\n j : %d\n\n", i, j);
-		printf("avec coo : x : %f y : %f\n", ym, xm);
+		// printf("\n\npixel haut gacuhe = wall\n");
+		// printf("i : %d\n j : %d\n\n", i, j);
+		// printf("avec coo : x : %f y : %f\n", ym, xm);
 		return (0);
 	}
-		
-	get_map_index(&i, &j, ym + P_SIZE, xm);
+	// else if (key == 1)
+	get_map_index(&i, &j, ym + P_SIZE + HIT_BOX, xm - HIT_BOX);
 	if (info->mapi.map[i][j] == '1')
 	{
-		printf("pixelbas gauche = wall\n");
+		// printf("delta x : %f\n", info->mapi.d_x);
+		// printf("delta y : %f\n", info->mapi.d_y);
+		// printf("pixelbas gauche = wall\n");
 		return (0);
 	}
-	get_map_index(&i, &j, ym, xm + P_SIZE);
+	get_map_index(&i, &j, ym - HIT_BOX, xm + P_SIZE + HIT_BOX);
 	if (info->mapi.map[i][j] == '1')
 	{
-		printf("pixel haut droit = wall\n");
+		//printf("pixel haut droit = wall\n");
 		return (0);
 	}
-	get_map_index(&i, &j, ym + P_SIZE, xm + P_SIZE);
+	get_map_index(&i, &j, ym + P_SIZE + HIT_BOX, xm + P_SIZE + HIT_BOX);
 	if (info->mapi.map[i][j] == '1')
 	{
-		printf("pixel bas droite = wall = wall\n");
+		//printf("pixel bas droite = wall = wall\n");
 		return (0);
 	}
 	return (1);
