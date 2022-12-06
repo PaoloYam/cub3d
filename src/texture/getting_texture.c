@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:17:40 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/06 15:28:47 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/06 20:10:39 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ void	get_wall_address(t_info *info)
 
 int	load_texture(t_info *info)
 {
-	printf("path nord: %s@\n", info->texture.n_wall);
+	printf("path nord: %s\n", info->texture.n_wall);
 	info->wall[0].wall = mlx_xpm_file_to_image(info->mlx,
-			"./texture/wall1.xpm", &info->wall[0].heigth, &info->wall[0].width);
+			info->texture.n_wall, &info->wall[0].heigth, &info->wall[0].width);
 	printf("nfo->wall[0].heigth = %d\n", info->wall[0].heigth);
 	if (!info->wall[0].wall)
 		return (printf("Error: texture: cannot load: Nord texture\n"));

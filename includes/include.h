@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/12/06 15:28:30 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:08:49 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@
 # define P_SIZE (X / 3)
 # define PX	1
 # define PI 3.1415926535
-# define SPEED 4
+# define SPEED 7
 # define HIT_BOX 2
+#define	MINIMAP 10
 
 typedef struct s_map	t_map;
 struct s_map {
@@ -111,6 +112,7 @@ struct s_info {
 
 /* RAYCAST */
 void	wall_face(float x, float y, t_info *info);
+int 	get_pixel_color(t_info *info, int i, int x, int y);
 
 /*	MAP */
 

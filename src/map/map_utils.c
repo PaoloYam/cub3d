@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:20:41 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/05 20:11:31 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:03:55 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_put_pixel(t_img *img, int x, int y, int color)
 	char	*dst;
 
 	if (x > RES_X || y > RES_Y)
-		return;
+		return ;
 	dst = img->addr + (y * img->len + x
 			* (img->bits / 8));
 	*(unsigned int *)dst = color;
@@ -66,30 +66,30 @@ int	create_hit_box(t_info *info, float ym, float xm, int key)
 	get_map_index(&i, &j, ym - HIT_BOX, xm - HIT_BOX);
 	if (info->mapi.map[i][j] == '1')
 	{
-		printf("\n\npixel haut gacuhe = wall\n");
-		printf("i : %d\n j : %d\n\n", i, j);
-		printf("avec coo : x : %f y : %f\n", ym, xm);
+		// printf("\n\npixel haut gacuhe = wall\n");
+		// printf("i : %d\n j : %d\n\n", i, j);
+		// printf("avec coo : x : %f y : %f\n", ym, xm);
 		return (0);
 	}
 	// else if (key == 1)
 	get_map_index(&i, &j, ym + P_SIZE + HIT_BOX, xm - HIT_BOX);
 	if (info->mapi.map[i][j] == '1')
 	{
-		printf("delta x : %f\n", info->mapi.d_x);
-		printf("delta y : %f\n", info->mapi.d_y);
-		printf("pixelbas gauche = wall\n");
+		// printf("delta x : %f\n", info->mapi.d_x);
+		// printf("delta y : %f\n", info->mapi.d_y);
+		// printf("pixelbas gauche = wall\n");
 		return (0);
 	}
 	get_map_index(&i, &j, ym - HIT_BOX, xm + P_SIZE + HIT_BOX);
 	if (info->mapi.map[i][j] == '1')
 	{
-		printf("pixel haut droit = wall\n");
+		//printf("pixel haut droit = wall\n");
 		return (0);
 	}
 	get_map_index(&i, &j, ym + P_SIZE + HIT_BOX, xm + P_SIZE + HIT_BOX);
 	if (info->mapi.map[i][j] == '1')
 	{
-		printf("pixel bas droite = wall = wall\n");
+		//printf("pixel bas droite = wall = wall\n");
 		return (0);
 	}
 	return (1);

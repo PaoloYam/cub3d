@@ -6,7 +6,7 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:17:49 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/06 11:05:31 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/06 20:27:41 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	change_position(int keycode, t_info *info)
 {
-	 if (keycode == 53)
+	if (keycode == 53)
 	 	return (0);
-	printf("key : %d\n", keycode);
+	//printf("key : %d\n", keycode);
 	if (keycode == 0 && check_wall(info, -info->mapi.d_y + info->mapi.co_y, info->mapi.d_x + info->mapi.co_x, 1))
 		draw(info, -info->mapi.d_y, info->mapi.d_x);
 	if (keycode == 1 && check_wall(info, info->mapi.d_y + info->mapi.co_y, info->mapi.d_x + info->mapi.co_x, 2))

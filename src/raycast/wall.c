@@ -6,22 +6,27 @@
 /*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 18:07:14 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/12/06 15:39:06 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/06 20:26:32 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/include.h"
 
-void	choose_texture(t_info *info, int x, int *y)
+void	choose_texture(t_info *info, int x, int *y, int yi)
 {
+	int	color;
+
+	color = 0;
+	//printf("prct : %f\n", info->ray.prt);
 	if (info->ray.lstw == 'N')
-		ft_put_pixel(&info->imgu, info->ray.num + x, *y, 0x009DE7D7);
-	else if (info->ray.lstw == 'E')
-		ft_put_pixel(&info->imgu, info->ray.num + x, *y, 0x009D44D7);
-	else if (info->ray.lstw == 'W')
-		ft_put_pixel(&info->imgu, info->ray.num + x, *y, 0x009DAAD7);
+		color = get_pixel_color(info, 0, floor(info->ray.prt * info->wall[0].width), ((float)(*y - yi)) / info->ray.lH * info->wall[0].heigth);
 	else if (info->ray.lstw == 'S')
-		ft_put_pixel(&info->imgu, info->ray.num + x, *y, 0x008723fd);
+		color = get_pixel_color(info, 1, floor(info->ray.prt * info->wall[1].width), ((float)(*y - yi)) / info->ray.lH * info->wall[1].heigth);
+	else if (info->ray.lstw == 'E')
+		color = get_pixel_color(info, 2, floor(info->ray.prt * info->wall[2].width), ((float)(*y - yi)) / info->ray.lH * info->wall[2].heigth);
+	else if (info->ray.lstw == 'W')
+		color = get_pixel_color(info, 3, floor(info->ray.prt * info->wall[3].width), ((float)(*y - yi)) / info->ray.lH * info->wall[3].heigth);
+	ft_put_pixel(&info->imgu, info->ray.num + x, *y, color);
 	*y += 1;
 }
 
@@ -48,7 +53,13 @@ void	draw_wall(t_info *info)
 		//printf("%d\n", y);
 		yi = y;
 		while (y < (yi + info->ray.lH) && y < RES_Y)
-			choose_texture(info, x, &y);
+		{	
+			choose_texture(info, x, &y, yi);
+			//ft_put_pixel(&info->imgu, info->ray.num + x, y, 0x8798787);
+			//y++;
+		}
+			
+			
 		while (y < RES_Y)
 		{
 			ft_put_pixel(&info->imgu, info->ray.num + x, y, info->texture.floor_int);
