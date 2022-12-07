@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/11/25 16:18:34 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/07 18:23:55 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,15 @@ int	control_map(char **map, int line)
 	int	i;
 	int	m;
 
-	i = 0;
-	while (map[0][i] != '\n')
-	{
+	i = -1;
+	while (map[0][++i] != '\n')
 		if (map[0][i] != '1' && map[0][i] != ' ')
 			return (0);
-		i++;
-	}
-	i = 0;
-	while (map[line][i])
-	{
+	i = -1;
+	while (map[line][++i])
 		if (map[line][i] != '1' && map[line][i] != ' ')
 			return (0);
-		i++;
-	}
 	m = -1;
-	//verif si espace apres fin de ligne
 	while (++m <= line)
 		if ((map[m][0] != '1') || (map[m][(ft_strlen(map[m]) - 2)] != '1'))
 			return (0);
@@ -60,10 +53,29 @@ int	control_map(char **map, int line)
 	while (++m <= line)
 	{
 		while (map[m][++i] == ' ' && map[m][i])
-		if (i == ft_strlen(map[m]) || map[m][0] == '\n')
-			return (0);		
+			if (i == ft_strlen(map[m]) || map[m][0] == '\n')
+				return (0);
 	}
 	return (1);
+}
+
+void	player_position(t_map *mapi, int m, int i, int *c)
+{
+	while (mapi->map[m][++i])
+	{
+		if (mapi->map[m][i] == 'N' || mapi->map[m][i] == 'E' ||
+				mapi->map[m][i] == 'S' || mapi->map[m][i] == 'W')
+		{
+			if (*c == 1)
+				*c = 0;
+			else if (*c == 0)
+				*c = 1;
+			mapi->pos_x = i;
+			mapi->pos_y = m;
+			mapi->co_x = (i * X) + ((X / 2) - (P_SIZE / 2));
+			mapi->co_y = (m * Y) + (Y / 2) - (P_SIZE / 2);
+		}	
+	}
 }
 
 int	control_map2(t_map *mapi)
@@ -74,25 +86,10 @@ int	control_map2(t_map *mapi)
 
 	m = -1;
 	c = 0;
-	while (++m < (mapi->h - 1))	
+	while (++m < (mapi->h - 1))
 	{
 		i = -1;
-		while (mapi->map[m][++i])
-		{
-			if (mapi->map[m][i] == 'N' || mapi->map[m][i] == 'E' ||
-					mapi->map[m][i] == 'S' || mapi->map[m][i] == 'W')
-			{
-				if (c == 1)
-					c = 0;
-				else if (c == 0)	
-					c = 1;	
-				mapi->pos_x = i;
-				mapi->pos_y = m;
-				mapi->co_x = (i * X) + ((X / 2) - (P_SIZE / 2));
-				mapi->co_y = (m * Y) + (Y / 2)- (P_SIZE / 2);
-				//printf("co_x : %f\nco_y : %f\n", mapi->co_x, mapi->co_y);
-			}	
-		}
+		player_position(mapi, m, i, &c);
 	}
 	if (c == 0)
 		return (0);
@@ -100,99 +97,17 @@ int	control_map2(t_map *mapi)
 		return (1);
 }
 
-int	control_map3(t_map *mapi)
-{
-	int	i;
-	int	m;
-
-	m = 0;
-	while (++m < (mapi->h - 1))	
-	{
-		i = 1;
-		while (i < (ft_strlen(mapi->map[m]) - 2))
-		{
-			if (mapi->map[m][i] == '0')
-			{
-				if (mapi->map[m][i - 1] == ' ')
-					return (0);
-				if (mapi->map[m][i + 1] == ' ')
-					return (0);
-				if (mapi->map[m - 1][i] == ' ')
-					return (0);
-				if (mapi->map[m + 1][i] == ' ')
-					return (0);	
-			}
-			i++;
-		}
-	}	
-	return (1);	
-}
-
-int	control_map4(t_map *mapi)
-{
-	int	i;
-	int	m;
-
-	m = -1;
-	i = 0;
-	while (++m < (mapi->h))
-	{
-		while (i < ft_strlen(mapi->map[m]) && mapi->map[m][i] != '\n' && mapi->map[m][i] != '\0')
-		{
-			if (mapi->map[m][i] == ' ' || mapi->map[m][i] == '1' || 
-				mapi->map[m][i] == '0' || mapi->map[m][i] == 'N' ||
-				mapi->map[m][i] == 'E' || mapi->map[m][i] == 'S' ||
-				mapi->map[m][i] == 'O' || mapi->map[m][i] == '\n') 
-				i++;
-			else
-				return (0);	
-		}
-	}
-	mapi->P = mapi->map[mapi->pos_y][mapi->pos_x];	
-	mapi->map[mapi->pos_y][mapi->pos_x] = '0';
-	return (1);
-}
-
-int	control_map5(t_map *mapi)
-{
-	int	i;
-	int	m;
-
-	m = 0;
-	while (++m < (mapi->h - 1))	
-	{
-		i = 1;
-		while (i < (ft_strlen(mapi->map[m]) - 2))
-		{
-			if (mapi->map[m][i] == 'N' || mapi->map[m][i] == 'O' ||
-					mapi->map[m][i] == 'E' || mapi->map[m][i] == 'S')
-			{
-				if (mapi->map[m][i - 1] == ' ')
-					return (0);
-				if (mapi->map[m][i + 1] == ' ')
-					return (0);
-				if (mapi->map[m - 1][i] == ' ')
-					return (0);
-				if (mapi->map[m + 1][i] == ' ')
-					return (0);
-			}
-			i++;
-		}
-	}	
-	return (1);	
-}
-
 int	map_maker(t_info *info)
 {
 	int		i;
-	
+
 	i = 0;
 	if (!control_map(info->mapi.map, info->mapi.h - 1))
 		return (0);
 	if (!control_map2(&info->mapi))
 		return (0);
 	if (!control_map3(&info->mapi))
-		return (0);	
+		return (0);
 	if (!control_map4(&info->mapi))
 		return (0);
 	if (!control_map5(&info->mapi))
