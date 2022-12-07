@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/12/06 21:08:49 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/07 18:25:14 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ struct s_ray {
 	float	lH;
 	float	wx;
 	float	wy;
+	float	nax;
+	float	nay;
+	float	ca;
 	int		num;
 	float	ray_ang;
 };
@@ -126,6 +129,10 @@ int		check_wall(t_info *info, float ym, float xm, int hit_box);
 int		get_map_index(int *i, int *j, float ym, float xm);
 int		create_hit_box(t_info *info, float ym, float xm, int key);
 void	clear_img(t_info *info);
+void	draw_direction(t_info *info);
+int		control_map5(t_map *mapi);
+int		control_map4(t_map *mapi);
+int		control_map3(t_map *mapi);
 
 /* TEXTURE */
 
