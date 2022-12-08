@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 19:06:09 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/10/28 17:03:45 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/08 11:11:47 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char	**ft_split(char const *s, char c)
 	if (!tab)
 		return (tab);
 	filling_word(sep_count, s, tab, c);
+	// free((void *)s);
 	return (tab);
 }
 

@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   check_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:40:48 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/06 13:07:00 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:27:19 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/include.h"
+
+void	initialize_texture(t_info *info)
+{
+	info->mapi.map = NULL;
+	info->texture.n_wall = NULL;
+	info->texture.s_wall = NULL;
+	info->texture.w_wall = NULL;
+	info->texture.e_wall = NULL;
+	info->texture.floor = NULL;
+	info->texture.ceiling = NULL;
+}
+
 
 int	all_info(t_info *info)
 {
@@ -40,7 +52,9 @@ int	color_range(char *str)
 	char	**split;
 	int		i;
 
+	printf("%s\n", str);
 	split = ft_split(str, ',');
+	printf("splitu %s\n", split[0]);
 	i = 0;
 	while (split[i])
 	{
@@ -56,6 +70,10 @@ int	color_range(char *str)
 		free_dub_tab(split, 2147483647);
 		return (0);
 	}
+	i = -1;
+	while (split[i] != NULL)
+		free(split[++i]);
+	free(split);
 	return (1);
 }
 

@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:50:32 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/06 13:23:10 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:24:54 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/include.h"
-
-void	initialize_texture(t_info *info)
-{
-	info->texture.n_wall = NULL;
-	info->texture.s_wall = NULL;
-	info->texture.w_wall = NULL;
-	info->texture.e_wall = NULL;
-	info->texture.floor = NULL;
-	info->texture.ceiling = NULL;
-}
 
 void	free_dub_tab(char **str, int n)
 {
@@ -58,16 +48,15 @@ int	all_num(char *str)
 
 int	free_texture(t_info *info, int line)
 {
-	free_dub_tab(info->mapi.map, info->mapi.h);
 	free_dub_tab(info->info, line);
-	free(info->texture.n_wall);
-	free(info->texture.s_wall);
-	free(info->texture.e_wall);
-	free(info->texture.w_wall);
-	if (info->texture.floor)
-		free(info->texture.floor);
-	if (info->texture.ceiling)
-		free(info->texture.ceiling);
+	if (info->texture.n_wall)
+		free(info->texture.n_wall);
+	if (info->texture.s_wall)
+		free(info->texture.s_wall);
+	if (info->texture.e_wall)	
+		free(info->texture.e_wall);
+	if (info->texture.w_wall)
+		free(info->texture.w_wall);	
 	return (0);
 }
 

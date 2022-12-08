@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/12/07 18:25:14 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/08 10:44:51 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@
 typedef struct s_map	t_map;
 struct s_map {
 	char	**map;
-	float		co_y;
-	float		co_x;
-	float		d_x;
-	float		d_y;
-	float		a;
+	float	co_y;
+	float	co_x;
+	float	d_x;
+	float	d_y;
+	float	a;
 	int		pos_x;
 	int		pos_y;
 	char	P;
@@ -70,8 +70,8 @@ struct s_texture {
 	char	*s_wall;
 	char	*w_wall;
 	char	*e_wall;
-	char	*floor; //a free a la fin
-	char	*ceiling;//a free a la fin
+	char	*floor; 
+	char	*ceiling;
 	int		ceiling_int;
 	int		floor_int;
 };
@@ -100,6 +100,7 @@ typedef struct s_info	t_info;
 struct s_info {
 	t_map		mapi;
 	int			side;	
+	int			i;
 	void		*mlx;
 	void		*win;
 	void		*mlxu;
@@ -151,5 +152,9 @@ int		load_texture(t_info *info);
 
 int		change_position(int keycode, t_info *info);
 void	hooks(t_info *info);
-//int		move_camera(int keycode, t_info *info);
+
+/* MAIN */
+
+void	end_it(t_info *info);
+
 #endif

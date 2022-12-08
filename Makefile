@@ -23,7 +23,7 @@ NAME        =	cub3D
 AR    		=	ar rcs
 GCC       	=	gcc 
 RM       	=	rm -f
-CFLAGS    	=	-Wall -Wextra -Werror -g -fsanitize=address 
+CFLAGS    	=	-Wall -Wextra -Werror -g  
 INC_FLAGS 	:= -Ilibft/incs
 INC_DIR 	?= ./includes
 INC_FLAGS 	+= $(addprefix -I,$(INC_DIRS))

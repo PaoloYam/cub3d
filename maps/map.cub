@@ -2,10 +2,10 @@ NO ./texture/lava_black.xpm
 SO ./texture/lava_purple.xpm
 WE        ./texture/new_world.xpm
 EA ./texture/bookshelf.xpm
-
+C 255,97,250
 F     255,56,34
 
-C 255,97,250
+
 
 
 

@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:00:53 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/12/07 17:45:53 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/08 09:40:48 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ void	draw_player(t_info *info, int xm, int ym)
 	}
 }
 
-void	draw_cube(t_info *info, int l, int c, int t, int p)
+void	draw_cube(t_info *info, int c, int t, int p)
 {
 	int	i;
 	int	j;
 	int	x;
 	int	y;
 
-	i = l * Y;
+	i = info->i * Y;
 	get_map_index(&y, &x, info->mapi.co_y, info->mapi.co_x);
-	while (i < (l * Y + Y))
+	while (i < (info->i * Y + Y))
 	{
 		j = c * X;
 		while (j < (c * X + X))
@@ -79,23 +79,23 @@ void	draw(t_info *info, int xm, int ym)
 	int	x;
 	int	y;
 	int	j;
-	int	i;
 
 	x = 0;
 	y = 0;
-	i = -1;
+	info->i = 0;
 	get_map_index(&y, &x, info->mapi.co_y, info->mapi.co_x);
 	y -= (MINIMAP / 2);
 	x -= (MINIMAP / 2);
-	while (++i < MINIMAP)
+	while (info->i < MINIMAP)
 	{
 		j = -1;
-		if ((y + i) >= 0 && (y + i) < info->mapi.h)
+		if ((y + info->i) >= 0 && (y + info->i) < info->mapi.h)
 		{
 			while (++j < MINIMAP)
 				if ((x + j) >= 0 && (x + j) <= info->mapi.w)
-					draw_cube(info, i, j, i + y, j + x);
+					draw_cube(info, j, info->i + y, j + x);
 		}	
+		info->i++;
 	}
 	clear_img(info);
 	draw_player(info, xm, ym);

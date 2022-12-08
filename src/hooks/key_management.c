@@ -6,7 +6,7 @@
 /*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:17:49 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/07 18:37:33 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/08 10:43:51 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	change_camera(int keycode, t_info *info)
 int	change_position(int keycode, t_info *info)
 {
 	if (keycode == 53)
-		return (0);
+		end_it(info);
 	if (keycode == 0 && check_wall(info, -info->mapi.d_y + info->mapi.co_y,
 			info->mapi.d_x + info->mapi.co_x, 1))
 		draw(info, -info->mapi.d_y, info->mapi.d_x);
