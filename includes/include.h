@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/12/08 21:57:00 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/08 23:27:16 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ int		free_texture(t_info *info);
 int		integer_color(char *str);
 int		load_texture(t_info *info);
 int		coma_check(char *str);
+void	color_int(char **split, int v, t_info *info);
 
 /* HOOKS */
 

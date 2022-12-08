@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 19:53:37 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/08 21:56:53 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/08 23:26:57 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,20 @@ int	init_info(t_info *info)
 {
 	info->init = 0;
 	info->mlx = mlx_init();
-	info->win = mlx_new_window(info->mlx, 1920,
-			1080, "CUB3D");
+	info->win = mlx_new_window(info->mlx, RES_X,
+			RES_Y, "CUB3D");
 	info->img.img = mlx_new_image(info->mlx, MINIMAP * X,
 			MINIMAP * Y);
 	info->img.addr = mlx_get_data_addr(info->img.img, &info->img.bits,
 			&info->img.len, &info->img.endian);
-	info->imgu.img = mlx_new_image(info->mlx, 1920, 1080);
+	info->imgu.img = mlx_new_image(info->mlx, RES_X, RES_Y);
 	info->imgu.addr = mlx_get_data_addr(info->imgu.img, &info->imgu.bits,
 			&info->imgu.len, &info->imgu.endian);
 	info->wall = ft_calloc(sizeof(t_texture), 4);
 	if (!info->wall)
 		return (0);
-	info->ray.last_x = 10;
-	info->ray.last_y = 10;
 	info->ray.last_prt = 10;
-	info->ray.last_w = 10;
+	info->ray.last_w = 'Z';
 	info->init = 1;
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:40:48 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/08 21:41:20 by tbrulhar         ###   ########.fr       */
+/*   Updated: 2022/12/08 22:32:36 by pyammoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	right_range(char *split)
 	return (1);
 }
 
-int	color_range(char *str)
+int	color_range(char *str, int v, t_info *info)
 {
 	char	**split;
 	int		i;
@@ -67,11 +67,10 @@ int	color_range(char *str)
 	{
 		free_dub_tab(split, 2147483647);
 		return (0);
-	}
+	}	
 	i = -1;
-	while (i < 3)
-		free(split[++i]);
-	free(split);
+	color_int(split, v, info);
+	free_dub_tab(split, 3);
 	return (1);
 }
 
@@ -79,11 +78,9 @@ int	check_info(t_info *info)
 {
 	if (!all_info(info))
 		return (printf("Error :texture : missing information\n"));
-	if (!color_range(info->texture.floor))
+	if (!color_range(info->texture.floor, 1, info))
 		return (printf("Error :range color : floor\n"));
-	info->texture.floor_int = integer_color(info->texture.floor);
-	if (!color_range(info->texture.ceiling))
+	if (!color_range(info->texture.ceiling, 2, info))
 		return (printf("Error :range color : ceiling\n"));
-	info->texture.ceiling_int = integer_color(info->texture.ceiling);
 	return (0);
 }
