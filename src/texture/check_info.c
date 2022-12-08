@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 15:40:48 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/08 12:27:19 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/08 21:41:20 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	initialize_texture(t_info *info)
 	info->texture.floor = NULL;
 	info->texture.ceiling = NULL;
 }
-
 
 int	all_info(t_info *info)
 {
@@ -52,18 +51,17 @@ int	color_range(char *str)
 	char	**split;
 	int		i;
 
-	printf("%s\n", str);
+	if (!coma_check(str))
+		return (0);
 	split = ft_split(str, ',');
-	printf("splitu %s\n", split[0]);
-	i = 0;
-	while (split[i])
+	i = -1;
+	while (split[++i])
 	{
 		if (!right_range(split[i]))
 		{
 			free_dub_tab(split, 2147483647);
 			return (0);
 		}
-		i++;
 	}
 	if (i != 3)
 	{
@@ -71,7 +69,7 @@ int	color_range(char *str)
 		return (0);
 	}
 	i = -1;
-	while (split[i] != NULL)
+	while (i < 3)
 		free(split[++i]);
 	free(split);
 	return (1);
@@ -80,22 +78,12 @@ int	color_range(char *str)
 int	check_info(t_info *info)
 {
 	if (!all_info(info))
-	{
-		printf("Error :texture : missing information\n");
-		return (0);
-	}
+		return (printf("Error :texture : missing information\n"));
 	if (!color_range(info->texture.floor))
-	{
-		printf("Error :range color : floor\n");
-		return (0);
-	}
-	else
-		info->texture.floor_int = integer_color(info->texture.floor);
+		return (printf("Error :range color : floor\n"));
+	info->texture.floor_int = integer_color(info->texture.floor);
 	if (!color_range(info->texture.ceiling))
-	{
-		printf("Error :range color : ceiling\n");
-		return (0);
-	}
+		return (printf("Error :range color : ceiling\n"));
 	info->texture.ceiling_int = integer_color(info->texture.ceiling);
-	return (1);
+	return (0);
 }

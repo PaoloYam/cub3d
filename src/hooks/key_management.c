@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_management.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:17:49 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/08 10:43:51 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/08 21:51:28 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	change_camera(int keycode, t_info *info)
 
 int	change_position(int keycode, t_info *info)
 {
-	if (keycode == 53)
+	if (keycode == 53 || keycode == 65307)
 		end_it(info);
 	if (keycode == 0 && check_wall(info, -info->mapi.d_y + info->mapi.co_y,
 			info->mapi.d_x + info->mapi.co_x, 1))

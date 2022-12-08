@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:50:32 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/08 12:24:54 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/08 21:40:57 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ int	all_num(char *str)
 	return (1);
 }
 
-int	free_texture(t_info *info, int line)
+int	free_texture(t_info *info)
 {
-	free_dub_tab(info->info, line);
+	free_dub_tab(info->info, info->map_alloc_size);
 	if (info->texture.n_wall)
 		free(info->texture.n_wall);
 	if (info->texture.s_wall)
 		free(info->texture.s_wall);
-	if (info->texture.e_wall)	
+	if (info->texture.e_wall)
 		free(info->texture.e_wall);
 	if (info->texture.w_wall)
-		free(info->texture.w_wall);	
+		free(info->texture.w_wall);
 	return (0);
 }
 
@@ -79,4 +79,21 @@ int	integer_color(char *str)
 	}
 	color_int = ft_atoi(color);
 	return (color_int);
+}
+
+int	coma_check(char *str)
+{
+	int	i;
+	int	coma;
+
+	i = -1;
+	coma = 0;
+	while (str[++i])
+	{
+		if (str[i] == ',')
+			coma++;
+	}
+	if (coma != 2)
+		return (0);
+	return (1);
 }
