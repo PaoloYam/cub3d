@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:30:01 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/12/07 18:23:55 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:44:48 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,24 @@ int	control_map(char **map, int line)
 	i = -1;
 	while (map[0][++i] != '\n')
 		if (map[0][i] != '1' && map[0][i] != ' ')
-			return (0);
+			return (printf("Error: Map: Wall: Up\n"));
 	i = -1;
 	while (map[line][++i])
 		if (map[line][i] != '1' && map[line][i] != ' ')
-			return (0);
+			return (printf("Error: Map: Wall: Down\n"));
 	m = -1;
 	while (++m <= line)
 		if ((map[m][0] != '1') || (map[m][(ft_strlen(map[m]) - 2)] != '1'))
-			return (0);
+			return (printf("Error: Map: Wall: Side\n"));
 	m = -1;
 	i = -1;
-	while (++m <= line)
+	while (++m < line)
 	{
 		while (map[m][++i] == ' ' && map[m][i])
 			if (i == ft_strlen(map[m]) || map[m][0] == '\n')
-				return (0);
+				return (printf("Error: Map: Lign: Empty\n"));
 	}
-	return (1);
+	return (0);
 }
 
 void	player_position(t_map *mapi, int m, int i, int *c)
@@ -92,9 +92,11 @@ int	control_map2(t_map *mapi)
 		player_position(mapi, m, i, &c);
 	}
 	if (c == 0)
-		return (0);
-	else
+		return (printf("Error: Map: Player\n"));
+	if (player_side(mapi))
 		return (1);
+	else
+		return (0);
 }
 
 int	map_maker(t_info *info)
@@ -102,15 +104,20 @@ int	map_maker(t_info *info)
 	int		i;
 
 	i = 0;
-	if (!control_map(info->mapi.map, info->mapi.h - 1))
+	if (info->map_alloc_size == 0)
+	{
+		printf("Error: Map: No map at the end of file\n");
 		return (0);
-	if (!control_map2(&info->mapi))
+	}
+	if (control_map(info->mapi.map, info->map_alloc_size - 1))
 		return (0);
-	if (!control_map3(&info->mapi))
+	if (control_map2(&info->mapi))
 		return (0);
-	if (!control_map4(&info->mapi))
+	if (control_map3(&info->mapi))
 		return (0);
-	if (!control_map5(&info->mapi))
+	if (control_map4(&info->mapi))
+		return (0);
+	if (control_map5(&info->mapi))
 		return (0);
 	final_map(&info->mapi);
 	return (1);

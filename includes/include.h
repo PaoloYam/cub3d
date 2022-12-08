@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   include.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:32:54 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/12/08 10:44:51 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/08 21:57:00 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ struct s_map {
 typedef struct s_ray	t_ray;
 struct s_ray {
 	char	lstw;
+	char	last_w;
+	float	last_x;
+	float	last_y;
+	float	last_prt;
 	float	dst;
 	float	prt;
 	float	lH;
@@ -111,6 +115,8 @@ struct s_info {
 	t_ray		ray;
 	t_wall		*wall;
 	char		**info;
+	int			map_alloc_size;
+	int			init;
 };
 
 
@@ -134,6 +140,7 @@ void	draw_direction(t_info *info);
 int		control_map5(t_map *mapi);
 int		control_map4(t_map *mapi);
 int		control_map3(t_map *mapi);
+int		player_side(t_map *mapi);
 
 /* TEXTURE */
 
@@ -143,10 +150,11 @@ void	free_dub_tab(char **str, int n);
 int		check_info(t_info *info);
 int		all_num(char *str);
 int		all_info(t_info *info);
-void	load_map(int i, int line, int fd, t_info *info);
-int		free_texture(t_info *info, int line);
+int		load_map(int i, int line, int fd, t_info *info);
+int		free_texture(t_info *info);
 int		integer_color(char *str);
 int		load_texture(t_info *info);
+int		coma_check(char *str);
 
 /* HOOKS */
 
@@ -155,6 +163,6 @@ void	hooks(t_info *info);
 
 /* MAIN */
 
-void	end_it(t_info *info);
+int	end_it(t_info *info);
 
 #endif

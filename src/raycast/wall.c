@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 18:07:14 by pyammoun          #+#    #+#             */
-/*   Updated: 2022/12/07 18:48:39 by pyammoun         ###   ########.fr       */
+/*   Updated: 2022/12/08 21:26:56 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	draw_wall(t_info *info)
 	if (info->ray.ca > 2 * PI)
 		info->ray.ca -= 2 * PI;
 	info->ray.lH = RES_Y / info->ray.dst * 20 / (0.7 * cos(info->ray.ca));
+	//printf("info ceiling : %d\n", info->texture.ceiling_int);
 	while (++x < 2)
 	{
 		y = -1;

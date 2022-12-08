@@ -3,24 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pyammoun <paolo.yammouni@42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tbrulhar <tbrulhar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 16:10:40 by tbrulhar          #+#    #+#             */
-/*   Updated: 2022/12/08 12:15:02by pyammoun         ###   ########.fr       */
+/*   Created: 2022/12/08 19:53:37 by tbrulhar          #+#    #+#             */
+/*   Updated: 2022/12/08 21:56:53 by tbrulhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/include.h"
 
-void	end_it(t_info *info)
+int	end_it(t_info *info)
 {
 	int	i;
 
 	i = 0;
-	mlx_clear_window(info->mlx, info->win);
+	if (info->init)
+	{
+		mlx_clear_window(info->mlx, info->win);
+		mlx_destroy_image(info->mlx, info->img.img);
+		mlx_destroy_image(info->mlx, info->imgu.img);
+	}
 	if (info->mapi.map != 0)
 	{	
-		while (i < info->mapi.h)
+		while (i < info->mapi.h && i < info->map_alloc_size)
 		{
 			free(info->mapi.map[i]);
 			i++;
@@ -31,12 +36,12 @@ void	end_it(t_info *info)
 		free(info->texture.floor);
 	if ((info->texture.ceiling))
 		free(info->texture.ceiling);
-	
 	exit(1);
 }
 
 int	init_info(t_info *info)
 {
+	info->init = 0;
 	info->mlx = mlx_init();
 	info->win = mlx_new_window(info->mlx, 1920,
 			1080, "CUB3D");
@@ -50,6 +55,11 @@ int	init_info(t_info *info)
 	info->wall = ft_calloc(sizeof(t_texture), 4);
 	if (!info->wall)
 		return (0);
+	info->ray.last_x = 10;
+	info->ray.last_y = 10;
+	info->ray.last_prt = 10;
+	info->ray.last_w = 10;
+	info->init = 1;
 	return (1);
 }
 
@@ -57,13 +67,13 @@ int	main(int argc, char **argv)
 {
 	t_info	info;
 
+	if (!init_info(&info))
+		end_it(&info);
 	if (argc != 2)
 		return (0);
 	if (!load_info(&info, argv))
 		end_it(&info);
 	if (!map_maker(&info))
-		end_it(&info);
-	if (!init_info(&info))
 		end_it(&info);
 	if (load_texture(&info))
 		end_it(&info);
